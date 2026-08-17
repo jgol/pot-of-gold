@@ -1,0 +1,80 @@
+# ─────────────────────────────────────────────────────────────────────────
+# pot-of-gold — hardened ignore. This is a PUBLIC repo. The primary control is
+# "only copy in approved, reviewed artifacts"; this file is the safety net so a
+# secret / licensed-data blob can never be committed by accident. Do not relax
+# without an exposure review.
+# ─────────────────────────────────────────────────────────────────────────
+
+# ── Secrets / credentials (NEVER commit) ──────────────────────────────────
+.env
+.env.*
+*.env
+!env.example            # a placeholder-only template is allowed (review before adding)
+.envrc
+*.key
+*.pem
+*.p12
+*.pfx
+*credentials*
+*secret*
+*_token*
+*apikey*
+*api_key*
+
+# ── Licensed / heavy market data + derivatives (NOT redistributable) ───────
+raw_data/
+**/local_store/
+*.parquet
+*.npz
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+*.feather
+*.arrow
+*.csv                   # allow-list specific non-data CSVs explicitly if needed
+
+# ── Model checkpoints / weights (data-derived) ────────────────────────────
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+ssl_model_*
+*_model_v*/
+
+# ── Run outputs / results / logs ──────────────────────────────────────────
+results/
+generated_qc/
+mlruns/
+ckpt/
+*.log
+*.hb
+*.hb.jsonl
+
+# ── Internal working notes / tooling (keep private) ───────────────────────
+.claude/
+CLAUDE.md
+**/memory/
+*_PRAXIS_DECISIONS.md   # internal decision trail — include a curated copy if wanted
+
+# ── Python ────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ── OS / editor ───────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
