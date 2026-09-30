@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software or the encoder experiment results, please cite the accompanying D.Eng praxis."
+title: "pot-of-gold — 0DTE options trading pipeline with transformer-based representation learning, genetic programming, and multi-agent LLM validation workflow."
+type: software
+authors:
+  - family-names: Goloshubina
+    given-names: Julia
+license: MIT
+repository-code: "https://github.com/jgol/pot-of-gold"
+date-released: "2026-09-29"
+keywords:
+  - representation learning
+  - self-supervised learning
+  - iTransformer
+  - transformer
+  - options
+  - 0DTE
+  - options trading
+  - genetic programming
+  - multi-agent LLM validation

@@ -1,0 +1,41 @@
+# iTransformer encoder config — shared by all three tokenizer variants.
+# The tokenizer is chosen per run via --tokenizer {linear|patch|convolutional}.
+# Hyperparameters read by the Self-supervised training pipeline.
+
+# Encoder architecture
+# Legend: 'ssl' = self-supervised (learning); n_ssl_features (below) = the number of self-supervised input features.
+ssl_hyperparams:
+  # tokenizer is supplied at run time via --tokenizer (linear | patch | convolutional) — the tokenizer comparison variable
+  # token/embedding width of the transformer
+  d_model: 128
+  # attention heads per block
+  n_heads: 4
+  # Three blocks; the experiment uses the final layer's mean-pooled 128-dimensional embedding.
+  n_layers: 3
+  # feed-forward hidden width inside each block (4 × d_model)
+  d_ff: 512
+  # regularization dropout rate
+  dropout: 0.1
+  # Input window length: 60 minute bars.
+  seq_len: 60
+  # bars per patch for the patch tokenizer (ignored by linear/convolutional)
+  patch_size: 12
+  # Retain the original mask projection; unmasked training uses its learned bias.
+  use_mask_indicator: true
+  # optimizer
+  batch_size: 64
+  learning_rate: 0.0001
+  num_epochs: 100
+  warmup_epochs: 10
+# Future-latent self-supervised training settings.
+training:
+  seed: 4395
+  # teacher = exponential moving average of the student, decay 0.99
+  ema_decay: 0.99
+  # how far ahead the student predicts the teacher's latent (target offset, in bars)
+  horizon_bars: 60
+  embargo_days: 5
+  window_stride: 30
+  n_ssl_features: 147
+  # Loss-weight legend: w_vicreg = VICReg weight; w_decorr = decorrelation weight; adv_lambda = adversarial-head lambda; w_var = variance-term weight; w_cov = covariance-term weight; vicreg_gamma = VICReg gamma target; huber_delta = Huber delta.
+  loss_weights: {w_vicreg: 0.5, w_decorr: 0.2, adv_lambda: 0.1, w_var: 25.0, w_cov: 1.0, vicreg_gamma: 1.0, huber_delta: 1.0}

@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "potofgold-encoder"
+version = "0.1.0"
+description = "Self-supervised iTransformer tokenizer experiments and synthetic-data training"
+readme = "transformer/README.md"
+requires-python = ">=3.12,<3.13"
+license = {text = "MIT"}
+authors = [{name = "Julia Goloshubina"}]
+dependencies = [
+    "torch==2.11.0",
+    "numpy==1.26.4",
+    "scipy==1.13.1",
+    "scikit-learn==1.5.1",
+    "PyYAML==6.0.1",
+]
+
+[project.optional-dependencies]
+reports = ["matplotlib==3.9.2", "seaborn==0.13.2", "pandas==2.2.2"]
+
+[project.scripts]
+potofgold-generate-data = "potofgold.sim_tools.simulation:main"
+potofgold-pack-data = "potofgold.sim_tools.simulation:pack_main"
+potofgold-inspect = "potofgold.sim_tools.inspection:main"
+potofgold-train = "potofgold.encoder.train:main"
+potofgold-embed = "potofgold.encoder.inference:main"
+potofgold-evaluate = "potofgold.analysis.evaluate:main"
+potofgold-report = "potofgold.analysis.report:main"
+
+[project.urls]
+Repository = "https://github.com/jgol/pot-of-gold"
+
+[tool.setuptools.packages.find]
+where = ["transformer/src"]
+
+[tool.setuptools.package-data]
+"potofgold.encoder" = ["variate_names.json"]

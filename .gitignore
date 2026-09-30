@@ -1,15 +1,7 @@
-# ─────────────────────────────────────────────────────────────────────────
-# pot-of-gold — hardened ignore. This is a PUBLIC repo. The primary control is
-# "only copy in approved, reviewed artifacts"; this file is the safety net so a
-# secret / licensed-data blob can never be committed by accident. Do not relax
-# without an exposure review.
-# ─────────────────────────────────────────────────────────────────────────
-
-# ── Secrets / credentials (NEVER commit) ──────────────────────────────────
+# Local credentials and licensed inputs
 .env
 .env.*
 *.env
-!env.example            # a placeholder-only template is allowed (review before adding)
 .envrc
 *.key
 *.pem
@@ -17,47 +9,40 @@
 *.pfx
 *credentials*
 *secret*
-*_token*
 *apikey*
 *api_key*
-
-# ── Licensed / heavy market data + derivatives (NOT redistributable) ───────
 raw_data/
-**/local_store/
-*.parquet
+local_store/
 *.npz
+*.npy
+*.parquet
+*.csv
 *.pkl
 *.pickle
 *.h5
 *.hdf5
 *.feather
 *.arrow
-*.csv                   # allow-list specific non-data CSVs explicitly if needed
 
-# ── Model checkpoints / weights (data-derived) ────────────────────────────
+# Generated runs and model files; only the original three checkpoints are released.
+runs/
 *.pt
 *.pth
 *.ckpt
 *.safetensors
-ssl_model_*
-*_model_v*/
-
-# ── Run outputs / results / logs ──────────────────────────────────────────
-results/
-generated_qc/
-mlruns/
-ckpt/
+/transformer/checkpoints/*
+!/transformer/checkpoints/encoder_linear.pt
+!/transformer/checkpoints/encoder_patch.pt
+!/transformer/checkpoints/encoder_convolutional.pt
+/transformer/results/*
+!/transformer/results/report.html
+!/transformer/results/experiment.json
 *.log
-*.hb
-*.hb.jsonl
 
-# ── Internal working notes / tooling (keep private) ───────────────────────
-.claude/
-CLAUDE.md
-**/memory/
-*_PRAXIS_DECISIONS.md   # internal decision trail — include a curated copy if wanted
+# Local verification tests are not part of the published repository.
+/transformer/tests/
 
-# ── Python ────────────────────────────────────────────────────────────────
+# Python, build tools and local editor state
 __pycache__/
 *.py[cod]
 *.egg-info/
@@ -67,14 +52,13 @@ dist/
 .venv/
 venv/
 env/
-.ipynb_checkpoints/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
-
-# ── OS / editor ───────────────────────────────────────────────────────────
+.ipynb_checkpoints/
 .DS_Store
 Thumbs.db
 .idea/
 .vscode/
-*.swp
+.claude/
+.codex/
