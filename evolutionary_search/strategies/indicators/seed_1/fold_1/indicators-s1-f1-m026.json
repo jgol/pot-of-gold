@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "indicators",
+  "seed": 1,
+  "fold": 1,
+  "strategy_id": "indicators-s1-f1-m026",
+  "fold_id": "indicators-s1-f1",
+  "role": "front",
+  "front_rank": 26,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "GT(EphReal(-1.046993), NetGammaProxy)",
+    "exit_tree": "LT(ATM_IV, EphReal(-0.366567))",
+    "size_tree": "RealizedVol30m",
+    "delta_tree": "EphReal(-1.4634)",
+    "width_tree": "EphReal(0.3372)",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 3.2801674481686334,
+    "template_name": "iron_condor",
+    "fitness": [
+      0.2844264537709883,
+      10.91898482351388,
+      -0.0,
+      -0.0
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 93,
+  "recorded": {
+    "train_neg_exp_raw": 0.2844264537709883,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": -1.3472369680394989,
+    "mean_per_day_excess": 0.21754305692490628,
+    "permutation_p": 0.3646353646353646,
+    "n_champion_trades": 93,
+    "tail_ok": false,
+    "champion_day_cvar": 18.15372499916628,
+    "baseline_day_cvar": 14.579435524203115,
+    "traded_day_edge": -0.060664751521206595,
+    "selection_credit": 0.5380102793122009,
+    "traded_coverage": 0.5352941176470588,
+    "traded_day_p": 0.942057942057942,
+    "traded_day_obs": -1.3768465717326746,
+    "honesty": "selective_low_coverage",
+    "coverage_matched_obs": -1.0256861412033351,
+    "coverage_matched_p": 0.8971028971028971,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": -0.5322090278911658,
+        "n": 63
+      },
+      "midday": {
+        "mean": -3.7042259777813804,
+        "n": 14
+      },
+      "power_hour": {
+        "mean": -0.0883840846744568,
+        "n": 8
+      },
+      "pre_close": {
+        "mean": -4.899704113024374,
+        "n": 8
+      }
+    }
+  }
+}

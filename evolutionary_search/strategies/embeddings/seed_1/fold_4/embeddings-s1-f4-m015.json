@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "embeddings",
+  "seed": 1,
+  "fold": 4,
+  "strategy_id": "embeddings-s1-f4-m015",
+  "fold_id": "embeddings-s1-f4",
+  "role": "front",
+  "front_rank": 15,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "GT(RV5d, EmbDir_EMB_GRID_PUT(EMB_GRID_PUT, EmbBankIdx(5)))",
+    "exit_tree": "LT(EmbProj_EMB_SPX_0(EMB_SPX), UnrealizedProfitPct)",
+    "size_tree": "EmbProj_EMB_FLOW_AGG_0(EMB_FLOW_AGG)",
+    "delta_tree": "EmbDir_EMB_VAR_ATM_SPREAD(PROTO_EMB_VAR_ATM_SPREAD_1, EmbBankIdx(1))",
+    "width_tree": "EmbProj_EMB_VAR_ATM_IV_1(EMB_VAR_ATM_IV)",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 2.8596046228068097,
+    "template_name": "iron_condor",
+    "fitness": [
+      -1.887734982878651,
+      2.735053641304967,
+      -0.15440477241386483,
+      -3.4929368930272617
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 8,
+  "recorded": {
+    "train_neg_exp_raw": -3.781575739445437,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": 0.7791357816498157,
+    "mean_per_day_excess": 1.895600842512557,
+    "permutation_p": 0.000999000999000999,
+    "n_champion_trades": 8,
+    "tail_ok": true,
+    "champion_day_cvar": 5.9521375378097225,
+    "baseline_day_cvar": 13.823131601991538,
+    "traded_day_edge": 6.79264708475587,
+    "selection_credit": 1.661011800967967,
+    "traded_coverage": 0.045714285714285714,
+    "traded_day_p": 0.2677322677322677,
+    "traded_day_obs": 0.7791357816498157,
+    "honesty": "selective_low_coverage",
+    "coverage_matched_obs": 0.0,
+    "coverage_matched_p": 1.0,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": -1.4490808890594558,
+        "n": 1
+      },
+      "midday": {
+        "mean": null,
+        "n": 0
+      },
+      "power_hour": {
+        "mean": 1.0974524488939974,
+        "n": 7
+      },
+      "pre_close": {
+        "mean": null,
+        "n": 0
+      }
+    }
+  }
+}

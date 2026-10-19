@@ -1,0 +1,85 @@
+{
+  "schema_version": 2,
+  "condition": "indicators",
+  "seed": 3,
+  "fold": 2,
+  "strategy_id": "indicators-s3-f2-champion",
+  "fold_id": "indicators-s3-f2",
+  "role": "champion",
+  "front_rank": null,
+  "is_champion": true,
+  "genome": {
+    "entry_tree": "GT(PutCallSkew10, EphReal(-0.343973))",
+    "exit_tree": "CrossBelow(Sqrt(VIXChange), MaxFavorableExcursion)",
+    "size_tree": "SPXReturn3d",
+    "delta_tree": "RawSpread_5m",
+    "width_tree": "VIXChange",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 2.593162012271704,
+    "template_name": "iron_condor",
+    "fitness": [
+      -2.069386844834303,
+      16.412475622215062,
+      -0.3327147341022202,
+      -0.9691412552760764
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 112,
+  "recorded": {
+    "partition": "random",
+    "accepted": false,
+    "champion_oos_mean_pnl": -1.1126917651065995,
+    "champion_train_neg_expectancy": -1.0274567980415077,
+    "champion_train_agreement": 0.9691412552760764,
+    "mean_per_day_excess": 1.1974202219371421,
+    "permutation_p": 0.011988011988011988,
+    "p_basis": {
+      "permutation_p": "excess-over-always-enter day sign-flip (abstention-inflated; A-vs-C paired ITT)",
+      "traded_day_p": "absolute traded-day PnL day sign-flip (the BINDING accept gate)"
+    },
+    "n_champion_trades": 112,
+    "tail_ok": true,
+    "champion_day_cvar": 14.717191917062706,
+    "baseline_day_cvar": 14.739492208360314,
+    "traded_day_edge": 1.1505753174935236,
+    "selection_credit": 1.2594402362709465,
+    "traded_coverage": 0.5696969696969697,
+    "traded_coverage_test_denom": 0.6363636363636364,
+    "coverage_basis": "traded_coverage=trades/held-out-union (champion-dependent denom, inflated); traded_coverage_test_denom=n_champion_trades/test_days (fixed test-day denom)",
+    "traded_day_p": 0.9560439560439561,
+    "traded_day_obs": -1.3257604009780757,
+    "honesty": "weak_traded_edge",
+    "coverage_matched_obs": -1.0719661853061644,
+    "coverage_matched_p": 0.903096903096903,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "shape_seed": "long_strangle",
+    "executed_shape": "iron_butterfly",
+    "routed_shape_desc": "Shape_iron_butterfly",
+    "node_count": 11,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": -0.750791439697316,
+        "n": 88
+      },
+      "midday": {
+        "mean": -1.9225918406210079,
+        "n": 22
+      },
+      "power_hour": {
+        "mean": -8.127405252456562,
+        "n": 2
+      },
+      "pre_close": {
+        "mean": null,
+        "n": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "indicators",
+  "seed": 3,
+  "fold": 1,
+  "strategy_id": "indicators-s3-f1-m010",
+  "fold_id": "indicators-s3-f1",
+  "role": "front",
+  "front_rank": 10,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "LT(RealizedVol30m_5m, RV5d)",
+    "exit_tree": "CrossAbove(UnrealizedProfitPct, Abs(Sqrt(VIXMean5d)))",
+    "size_tree": "PutCallSkew10",
+    "delta_tree": "ATM_IV",
+    "width_tree": "BarOfDay",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 2.6082104173628484,
+    "template_name": "iron_condor",
+    "fitness": [
+      -1.517894054633485,
+      12.416538270195836,
+      -0.0,
+      -0.0
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 147,
+  "recorded": {
+    "train_neg_exp_raw": -0.02043724351781918,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": 0.0862759225958807,
+    "mean_per_day_excess": 2.7738968440962966,
+    "permutation_p": 0.000999000999000999,
+    "n_champion_trades": 147,
+    "tail_ok": false,
+    "champion_day_cvar": 16.383055878239578,
+    "baseline_day_cvar": 13.599388866010731,
+    "traded_day_edge": 2.924423438522175,
+    "selection_credit": 2.3484955989796834,
+    "traded_coverage": 0.7386363636363636,
+    "traded_day_p": 0.4785214785214785,
+    "traded_day_obs": 0.0975581586276497,
+    "honesty": "weak_traded_edge",
+    "coverage_matched_obs": 0.210633694173309,
+    "coverage_matched_p": 0.47652347652347654,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": 0.010102871271252527,
+        "n": 91
+      },
+      "midday": {
+        "mean": -0.6626507660195539,
+        "n": 48
+      },
+      "power_hour": {
+        "mean": 5.446304513106134,
+        "n": 8
+      },
+      "pre_close": {
+        "mean": null,
+        "n": 0
+      }
+    }
+  }
+}

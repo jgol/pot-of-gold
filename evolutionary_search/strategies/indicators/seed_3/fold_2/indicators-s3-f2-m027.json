@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "indicators",
+  "seed": 3,
+  "fold": 2,
+  "strategy_id": "indicators-s3-f2-m027",
+  "fold_id": "indicators-s3-f2",
+  "role": "front",
+  "front_rank": 27,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "GT(PutCallSkew10, RealizedVol30m)",
+    "exit_tree": "CrossBelow(Abs(Abs(Sqrt(VIXChange))), MaxFavorableExcursion)",
+    "size_tree": "Delta(ATM_IV_5m, EphInt(5))",
+    "delta_tree": "NetGammaProxy",
+    "width_tree": "ThetaUrgency",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 2.0808025559973644,
+    "template_name": "iron_condor",
+    "fitness": [
+      -1.4312944129827807,
+      9.619438578215892,
+      -2.668658072914165,
+      -0.0
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 188,
+  "recorded": {
+    "train_neg_exp_raw": -0.059676293846857284,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": -0.5542450875429322,
+    "mean_per_day_excess": 1.1604358631289111,
+    "permutation_p": 0.004995004995004995,
+    "n_champion_trades": 188,
+    "tail_ok": true,
+    "champion_day_cvar": 11.041316259128697,
+    "baseline_day_cvar": 13.529688103359941,
+    "traded_day_edge": 1.1045761606731808,
+    "selection_credit": 2.319524689085322,
+    "traded_coverage": 0.9540229885057471,
+    "traded_day_p": 0.9460539460539461,
+    "traded_day_obs": -0.6276992557715135,
+    "honesty": "weak_traded_edge",
+    "coverage_matched_obs": 0.09376379419429864,
+    "coverage_matched_p": 0.12887112887112886,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": -0.7209634973778839,
+        "n": 144
+      },
+      "midday": {
+        "mean": 0.061493036939089585,
+        "n": 38
+      },
+      "power_hour": {
+        "mean": -0.45267803989022776,
+        "n": 6
+      },
+      "pre_close": {
+        "mean": null,
+        "n": 0
+      }
+    }
+  }
+}

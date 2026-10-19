@@ -1,0 +1,12 @@
+# Recorded experiment budget; all three conditions use the same search settings.
+population_size: 256
+generations: 100
+n_folds: 5
+split_seed: 0
+minimum_trades: 20
+entry_start_bar: 60
+max_tree_depth: 6
+max_tree_nodes: 25
+evaluation_workers: 1
+save_checkpoints: true
+checkpoint_every: 5

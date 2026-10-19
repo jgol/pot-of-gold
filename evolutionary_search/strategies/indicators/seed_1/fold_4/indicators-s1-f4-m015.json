@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "indicators",
+  "seed": 1,
+  "fold": 4,
+  "strategy_id": "indicators-s1-f4-m015",
+  "fold_id": "indicators-s1-f4",
+  "role": "front",
+  "front_rank": 15,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "LT(RealizedVol30m, EphReal(0.784003))",
+    "exit_tree": "CrossAbove(Delta(VIXSpot, EphInt(30)), RV5d)",
+    "size_tree": "ThetaUrgency",
+    "delta_tree": "IfThenElse(GT(Delta(RawSpread, EphInt(15)), Sqrt(ThetaUrgency)), Add(Abs(RV5d), Mul(PutCallSkew10, PutCallSkew)), Add(Div(VIXTermSlope, VIXSpot), Delta(PutCallSkew, EphInt(15))))",
+    "width_tree": "EphReal(-2.5288)",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 2.610401119313898,
+    "template_name": "iron_condor",
+    "fitness": [
+      1.10127070890179,
+      3.9162875888558584,
+      -0.0,
+      -0.0
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 166,
+  "recorded": {
+    "train_neg_exp_raw": 1.10127070890179,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": -1.1497514640715705,
+    "mean_per_day_excess": 2.0970601898465095,
+    "permutation_p": 0.000999000999000999,
+    "n_champion_trades": 166,
+    "tail_ok": true,
+    "champion_day_cvar": 3.9083628143854017,
+    "baseline_day_cvar": 9.177297294435666,
+    "traded_day_edge": 1.9000529434449815,
+    "selection_credit": 5.367380480111875,
+    "traded_coverage": 0.9431818181818182,
+    "traded_day_p": 1.0,
+    "traded_day_obs": -1.1497514640715705,
+    "honesty": "weak_traded_edge",
+    "coverage_matched_obs": 0.0,
+    "coverage_matched_p": 1.0,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": null,
+        "n": 0
+      },
+      "midday": {
+        "mean": null,
+        "n": 0
+      },
+      "power_hour": {
+        "mean": -1.1497514640715705,
+        "n": 166
+      },
+      "pre_close": {
+        "mean": null,
+        "n": 0
+      }
+    }
+  }
+}

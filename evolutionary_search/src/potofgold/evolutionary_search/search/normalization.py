@@ -1,0 +1,47 @@
+"""Fixed scalar normalization constants retained from the recorded experiment."""
+
+from __future__ import annotations
+from typing import Dict, Tuple
+
+TERMINAL_NORM_STATS: Dict[str, Tuple[float, float, str]] = {
+    "ATM_IV": (0.110291, 0.153269, "robust"),
+    "VIXSpot": (16.1562, 4.5718, "robust"),
+    "VIXTermSlope": (-0.6875, 1.3079, "robust"),
+    "RawSpread": (0.01651, 0.008138, "robust"),
+    "RealizedVol30m": (0.000259, 0.000148, "standard"),
+    "MinutesToClose": (202.0, 116.913, "standard"),
+    "DeltaSpread1": (-4.6e-05, 0.008379, "standard"),
+    "DeltaSpread5": (-0.000202, 0.009458, "standard"),
+    "BarOfDay": (202.0, 116.91, "standard"),
+    "PredRV15": (0.0147, 0.0033, "standard"),
+    "PredRV30": (0.0151, 0.0034, "standard"),
+    "PredSpread": (0.0005, 0.0115, "standard"),
+    "RegimeAboveLow": (0.5, 0.5, "standard"),
+    "RegimeIsHigh": (0.5, 0.5, "standard"),
+    "RegimeIsPremium": (0.5, 0.5, "standard"),
+    "PredGammaAccel": (0.0, 0.0002, "standard"),
+    "PredSmileConvexity": (0.0094, 0.0297, "standard"),
+    "PredJump": (0.0247, 0.1272, "standard"),
+    "PredFlowToxicity": (9.8716, 1.0408, "standard"),
+    "SessionReturn": (0.0, 0.006, "standard"),
+    "SPXReturn3d": (0.0021, 0.0118, "robust"),
+    "VIXMean5d": (16.4203, 4.5243, "robust"),
+    "RV5d": (0.1108, 0.0533, "robust"),
+    "IVRVGap5d": (0.0197, 0.0328, "robust"),
+    "PutCallSkew": (0.0107, 0.008, "robust"),
+    "PutCallSkew10": (0.0192, 0.0127, "robust"),
+    "SessionPosition": (0.545, 0.334, "standard"),
+    "ATM_IV_5m": (0.11084, 0.153147, "robust"),
+    "RealizedVol30m_5m": (0.000258, 0.000147, "standard"),
+    "RawSpread_5m": (0.016592, 0.005177, "robust"),
+    "VIXChange": (0.0, 1.5, "standard"),
+    "OvernightGap": (0.0, 0.0057, "standard"),
+    "CalDayOfWeek": (2.0, 1.414, "standard"),
+    "CalIsOpexWeek": (0.238, 0.426, "standard"),
+    "CalTurnOfMonth": (0.27, 0.44, "standard"),
+    "CalDaysToFomc": (0.0, 8.36, "standard"),
+    "NetGammaProxy": (0.0, 1.65, "standard"),
+    "GridReliability": (0.935, 0.176, "standard"),
+    "ThetaUrgency": (0.098183, 0.200404, "standard"),
+}
+NORMALIZED_TERMINALS = frozenset(TERMINAL_NORM_STATS.keys())

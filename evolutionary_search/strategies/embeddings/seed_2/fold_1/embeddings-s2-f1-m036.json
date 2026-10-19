@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "embeddings",
+  "seed": 2,
+  "fold": 1,
+  "strategy_id": "embeddings-s2-f1-m036",
+  "fold_id": "embeddings-s2-f1",
+  "role": "front",
+  "front_rank": 36,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "LT(EmbProj_EMB_FLOW_AGG_2(EMB_FLOW_AGG), EmbProj_EMB_VIX_2(EMB_VIX))",
+    "exit_tree": "LT(ProfitGiveback, EmbDir_EMB_SHARED(PROTO_EMB_SHARED_0, EmbBankIdx(3)))",
+    "size_tree": "EmbDir_EMB_FLOW_AGG(EMB_FLOW_AGG, EmbBankIdx(0))",
+    "delta_tree": "EmbProj_EMB_VAR_ATM_IV_0(EMB_VAR_ATM_IV)",
+    "width_tree": "EmbCos_EMB_GRID(PROTO_EMB_GRID_1, PROTO_EMB_GRID_0)",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 2.86407802671794,
+    "template_name": "iron_condor",
+    "fitness": [
+      -1.2697248657788698,
+      0.7613878465490993,
+      -1.0526239051085684,
+      -0.0
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 4,
+  "recorded": {
+    "train_neg_exp_raw": -2.311621112642411,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": -0.9304050537223707,
+    "mean_per_day_excess": 1.1147488234271816,
+    "permutation_p": 0.04895104895104895,
+    "n_champion_trades": 4,
+    "tail_ok": true,
+    "champion_day_cvar": 2.734395436450601,
+    "baseline_day_cvar": 6.232212948988089,
+    "traded_day_edge": 2.889389397582115,
+    "selection_credit": 1.0680477556862624,
+    "traded_coverage": 0.02564102564102564,
+    "traded_day_p": 0.939060939060939,
+    "traded_day_obs": -0.9304050537223707,
+    "honesty": "selective_low_coverage",
+    "coverage_matched_obs": 0.0,
+    "coverage_matched_p": 0.989010989010989,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": null,
+        "n": 0
+      },
+      "midday": {
+        "mean": null,
+        "n": 0
+      },
+      "power_hour": {
+        "mean": -1.0494771980673312,
+        "n": 3
+      },
+      "pre_close": {
+        "mean": -0.5731886206874892,
+        "n": 1
+      }
+    }
+  }
+}

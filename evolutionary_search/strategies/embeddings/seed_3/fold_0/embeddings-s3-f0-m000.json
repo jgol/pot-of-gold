@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "embeddings",
+  "seed": 3,
+  "fold": 0,
+  "strategy_id": "embeddings-s3-f0-m000",
+  "fold_id": "embeddings-s3-f0",
+  "role": "front",
+  "front_rank": 0,
+  "is_champion": true,
+  "genome": {
+    "entry_tree": "GT(EmbDir_EMB_GRID_CALL(EMB_GRID_CALL, EmbBankIdx(1)), EmbProj_EMB_FLOW_RAW_2(EMB_FLOW_RAW))",
+    "exit_tree": "LT(ProfitGiveback, EphReal(2.0))",
+    "size_tree": "EmbProj_EMB_FLOW_AGG_0(EMB_FLOW_AGG)",
+    "delta_tree": "EmbProj_EMB_GRID_1(PROTO_EMB_GRID_0)",
+    "width_tree": "EmbProj_EMB_GRID_CALL_2(EMB_GRID_CALL)",
+    "shape": "long_strangle",
+    "shape_tree": "Shape_long_strangle",
+    "stop_mult": 2.003268977439981,
+    "template_name": "iron_condor",
+    "fitness": [
+      -11.284769109889757,
+      14.895618693278706,
+      -2.1918323652713356,
+      -0.0
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 9,
+  "recorded": {
+    "train_neg_exp_raw": -11.284769109889757,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": -0.5853788064108569,
+    "mean_per_day_excess": 1.8125419467569004,
+    "permutation_p": 0.10789210789210789,
+    "n_champion_trades": 9,
+    "tail_ok": false,
+    "champion_day_cvar": 34.35244748781355,
+    "baseline_day_cvar": 8.98444183075964,
+    "traded_day_edge": 5.501399234948437,
+    "selection_credit": 1.6606478231254842,
+    "traded_coverage": 0.03954802259887006,
+    "traded_day_p": 0.5564435564435565,
+    "traded_day_obs": -0.7526298939568166,
+    "honesty": "selective_low_coverage",
+    "coverage_matched_obs": 0.0,
+    "coverage_matched_p": 0.9660339660339661,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": -3.604860049056886,
+        "n": 1
+      },
+      "midday": {
+        "mean": 0.7844176010439812,
+        "n": 1
+      },
+      "power_hour": {
+        "mean": 3.4753749492084656,
+        "n": 6
+      },
+      "pre_close": {
+        "mean": -23.3002165049356,
+        "n": 1
+      }
+    }
+  }
+}

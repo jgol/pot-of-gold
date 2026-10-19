@@ -1,0 +1,12 @@
+# Short execution check on prepared synthetic data. Results are new measurements.
+population_size: 12
+generations: 2
+n_folds: 5
+split_seed: 0
+minimum_trades: 20
+entry_start_bar: 60
+max_tree_depth: 6
+max_tree_nodes: 25
+evaluation_workers: 1
+save_checkpoints: false
+checkpoint_every: 5

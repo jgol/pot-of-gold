@@ -1,4 +1,4 @@
-"""Measure saved embeddings; optionally fit probes using a matching data corpus.
+"""Measure saved embeddings or recalculate summaries from archived per-seed metrics.
 """
 from __future__ import annotations
 
@@ -567,6 +567,88 @@ def seed_comparisons(runs):
     return output
 
 
+def recalculate_archive(path, *, eval_window='test'):
+    """Recalculate geometry summaries and the 5% milestone from per-seed values.
+
+    Saved means, confidence bounds and comparison results are not calculation
+    inputs. This aggregates recorded measurements; it does not reevaluate models.
+    """
+    path = Path(path)
+    payload = path.read_bytes()
+    record = json.loads(payload)
+    if not isinstance(record, dict) or record.get('schema_version') != 1:
+        raise ValueError('--archive requires a schema-1 experiment.json with per-seed measurements')
+    summary = record.get('across_seed_results', {})
+    if not isinstance(summary, dict):
+        raise ValueError('The archive must contain across_seed_results with per-seed measurements')
+    seeds = summary.get('seeds', [])
+    tokenizers = summary.get('tokenizers', [])
+    if not isinstance(seeds, list) or not seeds or any(not isinstance(s, (str, int)) or isinstance(s, bool) for s in seeds):
+        raise ValueError('The archive must identify each encoder seed')
+    seeds = [str(seed) for seed in seeds]
+    if len(set(seeds)) != len(seeds):
+        raise ValueError('Archive seed identifiers must be unique')
+    if not isinstance(tokenizers, list) or not tokenizers or any(not isinstance(t, str) for t in tokenizers):
+        raise ValueError('The archive must list its tokenizer variants')
+    if len(set(tokenizers)) != len(tokenizers) or 'convolutional' not in tokenizers or len(tokenizers) < 2:
+        raise ValueError('The milestone requires convolutional and at least one other distinct tokenizer')
+    values = {}
+    for tokenizer in tokenizers:
+        for window in WINDOWS:
+            for metric, archived_name in (('rankme', 'rankme'), ('participation_ratio', 'pr')):
+                try:
+                    raw = summary['per_tokenizer'][tokenizer]['windows'][window][archived_name]['per_seed']
+                    array = np.asarray(raw, dtype=np.float64)
+                except (KeyError, TypeError, ValueError) as error:
+                    raise ValueError(f'Missing or invalid per-seed {metric}: {tokenizer}, {window}') from error
+                if array.shape != (len(seeds),) or not np.isfinite(array).all():
+                    raise ValueError(f'Expected one finite {metric} value per seed: {tokenizer}, {window}')
+                values[tokenizer, window, metric] = array
+    runs = []
+    for tokenizer in tokenizers:
+        for i, seed in enumerate(seeds):
+            windows = {}
+            for window in WINDOWS:
+                result = dict(geometry={metric: dict(value=float(values[tokenizer, window, metric][i])) for metric in GEOMETRY})
+                count = summary.get('n_eval_by_window', {}).get(window)
+                if count is not None:
+                    result['n_windows'] = count
+                if window == summary.get('eval_window') and summary.get('n_days') is not None:
+                    result['n_days'] = summary['n_days']
+                windows[window] = result
+            runs.append(dict(tokenizer=tokenizer, seed=seed, d_model=summary.get('d_model'), windows=windows))
+    comparisons = [row for row in seed_comparisons(runs)
+                   if row['tokenizer'] == 'convolutional' and row['window'] == 'test']
+    if not comparisons:
+        raise ValueError('The archive has no assessable matched-seed convolutional test comparison')
+    for comparison in comparisons:
+        comparison['threshold_pct'] = 5.0
+        comparison['lower_ci_exceeds_threshold'] = (bool(comparison['ci'][0] > 5.0)
+                                                   if comparison['ci'] is not None else None)
+    corpus = record.get('corpus', {})
+    split_dates = {}
+    date_range = corpus.get('date_range')
+    if isinstance(date_range, list) and len(date_range) == 2:
+        split_dates['train_start'] = date_range[0]
+    if corpus.get('splits', {}).get('train_end'):
+        split_dates['train_end'] = corpus['splits']['train_end']
+    for window in WINDOWS:
+        bounds = corpus.get('splits', {}).get(window)
+        if isinstance(bounds, list) and len(bounds) == 2:
+            split_dates.update({window + '_start': bounds[0], window + '_end': bounds[1]})
+    return dict(schema_version=2, source_kind='archived_measurements',
+                source=dict(path=str(path), sha256=hashlib.sha256(payload).hexdigest()),
+                corpus=dict(sha256=corpus.get('corpus_sha256'), split_dates=split_dates),
+                evaluation=dict(eval_window=eval_window,
+                    ci_method='95% Student-t intervals across encoder seeds at fixed evaluation dates; mean ± t(0.975, n−1) × sample standard deviation / sqrt(n).',
+                    notes=['Means and confidence intervals are recalculated from the full-precision per-seed geometry measurements.',
+                           'Relative RankMe improvements are computed within matched seeds before averaging; the test milestone requires a lower 95% confidence bound above 5%.',
+                           'Underlying encoder measurements are retained from the archive. Recomputing them requires the original corpus and encoder checkpoints.']),
+                calculation_code_sha256={p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in
+                                         (Path(__file__), Path(__file__).with_name('metrics.py'))},
+                runs=runs, seed_aggregates=_aggregates(runs), seed_comparisons=comparisons)
+
+
 def _indicator_comparison(exports, prepared, masks, window, repeats, seed):
     """Test whether saved embeddings add to indicators on original targets.
 
@@ -768,15 +850,18 @@ def _finite_json(value):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--embeddings', nargs='+', type=Path, required=True,
+    source = parser.add_mutually_exclusive_group(required=True)
+    source.add_argument('--embeddings', nargs='+', type=Path,
                         help='One or more saved embedding files; a single encoder is sufficient')
+    source.add_argument('--archive', type=Path,
+                        help='Recalculate geometry means, seed confidence intervals and the 5%% milestone from archived per-seed measurements')
     parser.add_argument('--data', type=Path)
     parser.add_argument('--checkpoints', nargs='+', type=Path)
     parser.add_argument('--indicators', action='store_true', help='Also compare indicators with indicators plus embeddings on original targets')
     parser.add_argument('--out', type=Path, required=True)
     parser.add_argument('--eval-window', choices=('val', 'test'), default='test')
     parser.add_argument('--embargo-days', type=int, default=5)
-    parser.add_argument('--bootstrap', type=int, default=1000, help='Whole-day bootstrap repetitions; 0 writes point estimates only')
+    parser.add_argument('--bootstrap', type=int, default=1000, help='Whole-day bootstrap repetitions for --embeddings; 0 omits day-bootstrap intervals')
     parser.add_argument('--bootstrap-seed', type=int, default=42)
     parser.add_argument('--indicator-bootstrap', type=int, default=None,
                         help='Original-target bootstrap repetitions; defaults to --bootstrap')
@@ -788,13 +873,29 @@ def main():
     args = parser.parse_args()
     if args.out.suffix != '.json':
         parser.error('--out must end with .json')
-    inputs = [*args.embeddings, *(args.checkpoints or []), *([args.data] if args.data else [])]
+    inputs = [*(args.embeddings or []), *(args.checkpoints or []),
+              *([args.data] if args.data else []), *([args.archive] if args.archive else [])]
     if args.out.resolve() in {path.resolve() for path in inputs}:
         parser.error('--out must differ from every input file, including when --overwrite is set')
     if args.out.resolve() == (ROOT / 'results/experiment.json').resolve():
         parser.error('Preserve the archived experiment record; write new metrics under runs/')
     if args.out.exists() and not args.overwrite:
         parser.error(f'Output already exists: {args.out}; choose another path or use --overwrite')
+    if args.archive:
+        if args.data or args.checkpoints or args.indicators or args.shuffle_n:
+            parser.error('--archive uses saved per-seed geometry only; omit --data, --checkpoints, --indicators and --shuffle-n')
+        try:
+            record = recalculate_archive(args.archive, eval_window=args.eval_window)
+        except (OSError, ValueError) as error:
+            parser.error(str(error))
+        args.out.parent.mkdir(parents=True, exist_ok=True)
+        args.out.write_text(json.dumps(_finite_json(record), indent=2, allow_nan=False) + '\n')
+        milestone = record['seed_comparisons'][0]
+        print(f'Wrote {args.out}: recalculated geometry summaries for {len(record["runs"])} archived encoder runs')
+        print('Convolutional test RankMe improvement: '
+              f'{milestone["mean"]:.2f}%; 95% CI {milestone["ci"]}; '
+              f'lower bound > 5%: {milestone["lower_ci_exceeds_threshold"]}')
+        return
     if bool(args.data) != bool(args.checkpoints):
         parser.error('Prediction metrics require both --data and --checkpoints. Supply the checkpoint(s) for the chosen embeddings, or omit both arguments for geometry only.')
     missing = [str(path) for path in args.embeddings if not path.is_file()]

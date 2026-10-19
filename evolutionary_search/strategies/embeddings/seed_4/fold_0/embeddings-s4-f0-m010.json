@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "embeddings",
+  "seed": 4,
+  "fold": 0,
+  "strategy_id": "embeddings-s4-f0-m010",
+  "fold_id": "embeddings-s4-f0",
+  "role": "front",
+  "front_rank": 10,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "AND(GT(VIXMean5d, EmbProj_EMB_VIX_0(EMB_VIX)), AND(GT(EmbDir_EMB_GRID_ATM(EMB_GRID_ATM, EmbBankIdx(6)), VIXMean5d), LT(BarOfDay, EphReal(-1.180395))))",
+    "exit_tree": "GT(MaxFavorableExcursion, Sqrt(Lag(MaxFavorableExcursion, EphInt(3))))",
+    "size_tree": "EmbProj_EMB_SHARED_2(PROTO_EMB_SHARED_1)",
+    "delta_tree": "EmbProj_EMB_FLOW_RAW_2(PROTO_EMB_FLOW_RAW_1)",
+    "width_tree": "EmbProj_EMB_GRID_ATM_1(EMB_GRID_ATM)",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 2.5343768425142357,
+    "template_name": "iron_condor",
+    "fitness": [
+      -1.4299004910992794,
+      4.602106492207898,
+      -2.041110364333408,
+      -0.18447443576789924
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 24,
+  "recorded": {
+    "train_neg_exp_raw": -0.609226833155803,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": 1.1841863572962419,
+    "mean_per_day_excess": 2.609885296836958,
+    "permutation_p": 0.000999000999000999,
+    "n_champion_trades": 24,
+    "tail_ok": true,
+    "champion_day_cvar": 5.7702454185410845,
+    "baseline_day_cvar": 11.865233560224347,
+    "traded_day_edge": 4.161878881316436,
+    "selection_credit": 2.3360040760464615,
+    "traded_coverage": 0.15,
+    "traded_day_p": 0.024975024975024976,
+    "traded_day_obs": 1.1841863572962419,
+    "honesty": "real_traded_edge",
+    "coverage_matched_obs": 0.863096151073559,
+    "coverage_matched_p": 0.16783216783216784,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": 1.1841863572962419,
+        "n": 24
+      },
+      "midday": {
+        "mean": null,
+        "n": 0
+      },
+      "power_hour": {
+        "mean": null,
+        "n": 0
+      },
+      "pre_close": {
+        "mean": null,
+        "n": 0
+      }
+    }
+  }
+}

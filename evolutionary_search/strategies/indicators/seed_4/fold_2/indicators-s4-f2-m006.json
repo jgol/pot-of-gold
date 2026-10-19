@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "indicators",
+  "seed": 4,
+  "fold": 2,
+  "strategy_id": "indicators-s4-f2-m006",
+  "fold_id": "indicators-s4-f2",
+  "role": "front",
+  "front_rank": 6,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "LT(SessionReturn, EphReal(1.520053))",
+    "exit_tree": "CrossBelow(Sqrt(VIXMean5d), UnrealizedProfitPct)",
+    "size_tree": "RawSpread",
+    "delta_tree": "SessionPosition",
+    "width_tree": "EphReal(-1.5522)",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 2.5822507571305535,
+    "template_name": "iron_condor",
+    "fitness": [
+      -2.323566654508781,
+      14.499904793012645,
+      -0.0,
+      -0.6116630184279535
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 247,
+  "recorded": {
+    "train_neg_exp_raw": -0.9015600084412136,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": -0.13031290311887933,
+    "mean_per_day_excess": 2.5683568110841475,
+    "permutation_p": 0.000999000999000999,
+    "n_champion_trades": 247,
+    "tail_ok": false,
+    "champion_day_cvar": 13.807265052759297,
+    "baseline_day_cvar": 12.214726570235731,
+    "traded_day_edge": 2.51334596672076,
+    "selection_credit": 7.354300270698859,
+    "traded_coverage": 0.9886363636363636,
+    "traded_day_p": 0.5914085914085914,
+    "traded_day_obs": -0.18498440845036312,
+    "honesty": "weak_traded_edge",
+    "coverage_matched_obs": -0.31841606607182965,
+    "coverage_matched_p": 0.7442557442557443,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": -0.7099001277757527,
+        "n": 153
+      },
+      "midday": {
+        "mean": 3.3522161696459314,
+        "n": 32
+      },
+      "power_hour": {
+        "mean": 0.3854992309479389,
+        "n": 38
+      },
+      "pre_close": {
+        "mean": -1.8955189885568544,
+        "n": 24
+      }
+    }
+  }
+}

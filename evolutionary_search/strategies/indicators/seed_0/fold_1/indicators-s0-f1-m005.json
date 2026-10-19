@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "indicators",
+  "seed": 0,
+  "fold": 1,
+  "strategy_id": "indicators-s0-f1-m005",
+  "fold_id": "indicators-s0-f1",
+  "role": "front",
+  "front_rank": 5,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "LT(EphReal(0.021358), DeltaSpread5)",
+    "exit_tree": "CrossBelow(Sqrt(VIXMean5d), UnrealizedProfitPct)",
+    "size_tree": "PutCallSkew10",
+    "delta_tree": "DeltaSpread5",
+    "width_tree": "VIXTermSlope",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 2.8706995711971035,
+    "template_name": "iron_condor",
+    "fitness": [
+      -2.034253069853503,
+      15.634601658027153,
+      -1.971003991290274,
+      -0.5589606516543462
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 179,
+  "recorded": {
+    "train_neg_exp_raw": -0.6839072845168332,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": 0.62328571629625,
+    "mean_per_day_excess": 2.603104606441876,
+    "permutation_p": 0.000999000999000999,
+    "n_champion_trades": 179,
+    "tail_ok": false,
+    "champion_day_cvar": 15.041277403617933,
+    "baseline_day_cvar": 11.944111429176248,
+    "traded_day_edge": 2.4974107110547723,
+    "selection_credit": 3.6138024810810565,
+    "traded_coverage": 0.9053254437869822,
+    "traded_day_p": 0.21578421578421578,
+    "traded_day_obs": 0.7292035504380963,
+    "honesty": "weak_traded_edge",
+    "coverage_matched_obs": 0.2104595774339595,
+    "coverage_matched_p": 0.46053946053946054,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": 0.11965471549692544,
+        "n": 140
+      },
+      "midday": {
+        "mean": 2.443635443344847,
+        "n": 34
+      },
+      "power_hour": {
+        "mean": 2.3465755947468727,
+        "n": 5
+      },
+      "pre_close": {
+        "mean": null,
+        "n": 0
+      }
+    }
+  }
+}

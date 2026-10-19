@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "embeddings",
+  "seed": 0,
+  "fold": 4,
+  "strategy_id": "embeddings-s0-f4-m016",
+  "fold_id": "embeddings-s0-f4",
+  "role": "front",
+  "front_rank": 16,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "LT(EmbProj_EMB_GRID_CALL_1(EMB_GRID_CALL), EmbDir_EMB_SPX(EMB_SPX, EmbBankIdx(4)))",
+    "exit_tree": "LT(EmbProj_EMB_GRID_CALL_0(EMB_GRID_CALL), UnrealizedProfitPct)",
+    "size_tree": "EmbProj_EMB_FLOW_AGG_0(EMB_FLOW_AGG)",
+    "delta_tree": "EmbProj_EMB_GRID_PUT_1(PROTO_EMB_GRID_PUT_0)",
+    "width_tree": "BarOfDay",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 2.03295038646024,
+    "template_name": "iron_condor",
+    "fitness": [
+      -2.0353650932478127,
+      4.223065043549204,
+      -0.618659336301928,
+      -3.4605275232326305
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 6,
+  "recorded": {
+    "train_neg_exp_raw": -3.6222106564182197,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": 1.3417375921473973,
+    "mean_per_day_excess": 2.3985565309531562,
+    "permutation_p": 0.000999000999000999,
+    "n_champion_trades": 6,
+    "tail_ok": true,
+    "champion_day_cvar": 3.1904309084405362,
+    "baseline_day_cvar": 12.094512680755443,
+    "traded_day_edge": 5.717448438627855,
+    "selection_credit": 2.280726049023877,
+    "traded_coverage": 0.03428571428571429,
+    "traded_day_p": 0.2087912087912088,
+    "traded_day_obs": 1.3417375921473973,
+    "honesty": "selective_low_coverage",
+    "coverage_matched_obs": 0.0,
+    "coverage_matched_p": 1.0,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": -3.1904309084405362,
+        "n": 1
+      },
+      "midday": {
+        "mean": null,
+        "n": 0
+      },
+      "power_hour": {
+        "mean": 2.248171292264984,
+        "n": 5
+      },
+      "pre_close": {
+        "mean": null,
+        "n": 0
+      }
+    }
+  }
+}

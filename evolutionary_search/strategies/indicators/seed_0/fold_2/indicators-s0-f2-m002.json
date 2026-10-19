@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "indicators",
+  "seed": 0,
+  "fold": 2,
+  "strategy_id": "indicators-s0-f2-m002",
+  "fold_id": "indicators-s0-f2",
+  "role": "front",
+  "front_rank": 2,
+  "is_champion": true,
+  "genome": {
+    "entry_tree": "LT(RealizedVol30m_5m, EphReal(0.0))",
+    "exit_tree": "CrossAbove(UnrealizedProfitPct, Sqrt(VIXMean5d))",
+    "size_tree": "SPXReturn3d",
+    "delta_tree": "ThetaUrgency",
+    "width_tree": "ThetaUrgency",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 2.9841477023761,
+    "template_name": "iron_condor",
+    "fitness": [
+      -2.3219656164052234,
+      16.84028442228636,
+      -0.28743018956870275,
+      -1.7394415106936547
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 146,
+  "recorded": {
+    "train_neg_exp_raw": -1.85798276963651,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": -0.7322618460821565,
+    "mean_per_day_excess": 1.1514663995058205,
+    "permutation_p": 0.04095904095904096,
+    "n_champion_trades": 146,
+    "tail_ok": false,
+    "champion_day_cvar": 15.806918776530381,
+    "baseline_day_cvar": 13.845875647499525,
+    "traded_day_edge": 0.5564167128345203,
+    "selection_credit": 1.8432116602612072,
+    "traded_coverage": 0.5375722543352601,
+    "traded_day_p": 0.8561438561438561,
+    "traded_day_obs": -1.1495723605160735,
+    "honesty": "selective_low_coverage",
+    "coverage_matched_obs": 0.10825317261039165,
+    "coverage_matched_p": 0.23376623376623376,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": -0.331099413985008,
+        "n": 79
+      },
+      "midday": {
+        "mean": 2.5880974349736583,
+        "n": 22
+      },
+      "power_hour": {
+        "mean": 1.482888023049415,
+        "n": 27
+      },
+      "pre_close": {
+        "mean": -9.87386088971855,
+        "n": 18
+      }
+    }
+  }
+}

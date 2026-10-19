@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "indicators",
+  "seed": 3,
+  "fold": 2,
+  "strategy_id": "indicators-s3-f2-m029",
+  "fold_id": "indicators-s3-f2",
+  "role": "front",
+  "front_rank": 29,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "GT(PutCallSkew10, NetGammaProxy)",
+    "exit_tree": "CrossBelow(Sqrt(Abs(OvernightGap)), MaxFavorableExcursion)",
+    "size_tree": "Delta(ATM_IV_5m, EphInt(5))",
+    "delta_tree": "NetGammaProxy",
+    "width_tree": "EphReal(-1.1917)",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 2.485806149713223,
+    "template_name": "iron_condor",
+    "fitness": [
+      0.5540707832108955,
+      8.05540774827825,
+      -0.0,
+      -0.0
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 220,
+  "recorded": {
+    "train_neg_exp_raw": 0.5540707832108955,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": -0.5581835253945832,
+    "mean_per_day_excess": 1.8134366931351478,
+    "permutation_p": 0.000999000999000999,
+    "n_champion_trades": 220,
+    "tail_ok": true,
+    "champion_day_cvar": 8.961411432265692,
+    "baseline_day_cvar": 12.35277362630999,
+    "traded_day_edge": 1.6879026763637708,
+    "selection_credit": 9.052564993617855,
+    "traded_coverage": 0.9829545454545454,
+    "traded_day_p": 0.989010989010989,
+    "traded_day_obs": -0.7098287606173892,
+    "honesty": "weak_traded_edge",
+    "coverage_matched_obs": 0.1184715667538714,
+    "coverage_matched_p": 0.00999000999000999,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": -0.372941145275139,
+        "n": 171
+      },
+      "midday": {
+        "mean": 0.41155260939009236,
+        "n": 19
+      },
+      "power_hour": {
+        "mean": -0.5552581258605092,
+        "n": 18
+      },
+      "pre_close": {
+        "mean": -4.737691088140179,
+        "n": 12
+      }
+    }
+  }
+}

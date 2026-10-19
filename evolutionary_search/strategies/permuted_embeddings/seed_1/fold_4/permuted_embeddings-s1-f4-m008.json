@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "permuted_embeddings",
+  "seed": 1,
+  "fold": 4,
+  "strategy_id": "permuted_embeddings-s1-f4-m008",
+  "fold_id": "permuted_embeddings-s1-f4",
+  "role": "front",
+  "front_rank": 8,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "AND(GT(EmbCos_EMB_GRID_PUT(EMB_GRID_PUT, PROTO_EMB_GRID_PUT_0), EmbCos_EMB_GRID_CALL(EMB_GRID_CALL, PROTO_EMB_GRID_CALL_0)), GT(EmbProj_EMB_FLOW_AGG_0(EMB_FLOW_AGG), EmbCos_EMB_GRID_PUT(EMB_GRID_PUT, PROTO_EMB_GRID_PUT_0)))",
+    "exit_tree": "LT(Mul(EmbDir_EMB_STRIKE(EMB_STRIKE, EmbBankIdx(4)), EmbCos_EMB_GRID_PUT(EMB_GRID_PUT, PROTO_EMB_GRID_PUT_0)), EmbDir_EMB_GRID_CALL(PROTO_EMB_GRID_CALL_1, EmbBankIdx(5)))",
+    "size_tree": "IfThenElse(CrossAbove(EmbProj_EMB_STRIKE_2(EMB_STRIKE), EmbProj_EMB_VAR_ATM_SPREAD_2(EMB_VAR_ATM_SPREAD)), EmbProj_EMB_GRID_CALL_1(PROTO_EMB_GRID_CALL_0), EmbDir_EMB_SHARED(EMB_SHARED, EmbBankIdx(6)))",
+    "delta_tree": "EmbProj_EMB_GRID_CALL_0(PROTO_EMB_GRID_CALL_1)",
+    "width_tree": "VIXMean5d",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 2.47280574094322,
+    "template_name": "iron_condor",
+    "fitness": [
+      0.3183347573130196,
+      1.3490751249287616,
+      -0.0,
+      -0.0
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 7,
+  "recorded": {
+    "train_neg_exp_raw": 0.3183347573130196,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": -0.7716727986074624,
+    "mean_per_day_excess": 1.4916292529336417,
+    "permutation_p": 0.01998001998001998,
+    "n_champion_trades": 7,
+    "tail_ok": true,
+    "champion_day_cvar": 1.2687007414208988,
+    "baseline_day_cvar": 14.584676815477025,
+    "traded_day_edge": 4.853971702297265,
+    "selection_credit": 1.3223026547642507,
+    "traded_coverage": 0.04794520547945205,
+    "traded_day_p": 1.0,
+    "traded_day_obs": -0.7716727986074624,
+    "honesty": "selective_low_coverage",
+    "coverage_matched_obs": -0.08005557041801763,
+    "coverage_matched_p": 0.07392607392607392,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": -0.9680627817661638,
+        "n": 1
+      },
+      "midday": {
+        "mean": -0.5149751078452647,
+        "n": 4
+      },
+      "power_hour": {
+        "mean": -1.1868731885525072,
+        "n": 2
+      },
+      "pre_close": {
+        "mean": null,
+        "n": 0
+      }
+    }
+  }
+}

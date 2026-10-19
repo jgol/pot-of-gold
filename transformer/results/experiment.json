@@ -119,7 +119,7 @@
       "val": 924
     },
     "n_seeds": 5,
-    "note": "Across-seed measurements for the 5-seed encoder experiment. Training, validation, and test results are recorded in per_tokenizer[tokenizer].windows. The recorded criteria require >=5% improvement over the next-best tokenizer and prediction scores above the indicator baseline on held-out test data. Only seed 4395 is released; recomputing its measurements requires its checkpoints and the original corpus. Recomputing the full comparison requires all 5 seeds and the licensed corpus.",
+    "note": "Across-seed measurements for the 5-seed encoder experiment. Training, validation, and test results are recorded in per_tokenizer[tokenizer].windows. The recorded criteria require >=5% improvement over the next-best tokenizer and prediction scores above the indicator baseline on held-out test data. All 15 original checkpoints are released: three tokenizers across all 5 seeds. Recomputing the measurements requires these checkpoints and the original licensed corpus.",
     "per_tokenizer": {
       "convolutional": {
         "pr": {
@@ -3287,7 +3287,13 @@
       "5040",
       "6118"
     ],
-    "released_seed": "4395",
+    "released_seeds": [
+      "0",
+      "42",
+      "4395",
+      "5040",
+      "6118"
+    ],
     "test": "encoder_across_seed_summary",
     "window": {
       "end": "2026-09-01",

@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "combined",
+  "seed": 0,
+  "fold": 4,
+  "strategy_id": "combined-s0-f4-m003",
+  "fold_id": "combined-s0-f4",
+  "role": "front",
+  "front_rank": 3,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "GT(EmbProj_EMB_GRID_1(EMB_GRID), EmbProj_EMB_GRID_ATM_1(EMB_GRID_ATM))",
+    "exit_tree": "LT(EmbDir_EMB_GRID_ATM(PROTO_EMB_GRID_ATM_1, EmbBankIdx(1)), UnrealizedProfitPct)",
+    "size_tree": "EmbProj_EMB_SHARED_1(PROTO_EMB_SHARED_1)",
+    "delta_tree": "ThetaUrgency",
+    "width_tree": "ThetaUrgency",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 3.1655850695864927,
+    "template_name": "iron_condor",
+    "fitness": [
+      -3.8795701136963956,
+      12.99695829774225,
+      -3.6157109816362305,
+      -2.1689605574338855
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 319,
+  "recorded": {
+    "train_neg_exp_raw": -2.672938880033893,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": 2.126976402018617,
+    "mean_per_day_excess": 5.2249069760103835,
+    "permutation_p": 0.000999000999000999,
+    "n_champion_trades": 319,
+    "tail_ok": true,
+    "champion_day_cvar": 11.351633050569788,
+    "baseline_day_cvar": 13.510157794182604,
+    "traded_day_edge": 5.612176849251248,
+    "selection_credit": 1.4490257119119583,
+    "traded_coverage": 0.9069767441860465,
+    "traded_day_p": 0.000999000999000999,
+    "traded_day_obs": 4.34939405284576,
+    "honesty": "real_traded_edge",
+    "coverage_matched_obs": 0.6222282687550683,
+    "coverage_matched_p": 0.08291708291708291,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": 0.9943164832678861,
+        "n": 168
+      },
+      "midday": {
+        "mean": 3.5484978243596488,
+        "n": 67
+      },
+      "power_hour": {
+        "mean": 3.104263859988111,
+        "n": 82
+      },
+      "pre_close": {
+        "mean": 9.58065615190611,
+        "n": 2
+      }
+    }
+  }
+}

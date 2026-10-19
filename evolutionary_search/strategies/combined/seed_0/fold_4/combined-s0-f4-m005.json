@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "combined",
+  "seed": 0,
+  "fold": 4,
+  "strategy_id": "combined-s0-f4-m005",
+  "fold_id": "combined-s0-f4",
+  "role": "front",
+  "front_rank": 5,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "GT(EmbProj_EMB_GRID_1(EMB_GRID), VIXSpot)",
+    "exit_tree": "LT(EmbProj_EMB_SPX_0(EMB_SPX), UnrealizedProfitPct)",
+    "size_tree": "EmbProj_EMB_SHARED_1(PROTO_EMB_SHARED_1)",
+    "delta_tree": "ThetaUrgency",
+    "width_tree": "ThetaUrgency",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 3.4236417899007794,
+    "template_name": "iron_condor",
+    "fitness": [
+      -3.0432288479531038,
+      11.95300279217822,
+      -5.397756935712054,
+      -1.3755162962813772
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 187,
+  "recorded": {
+    "train_neg_exp_raw": -2.0783644699545336,
+    "obj1_is_excess": true,
+    "accepted": true,
+    "champion_oos_mean_pnl": 2.824575817648382,
+    "mean_per_day_excess": 4.3510128228493885,
+    "permutation_p": 0.000999000999000999,
+    "n_champion_trades": 187,
+    "tail_ok": true,
+    "champion_day_cvar": 12.58554286867255,
+    "baseline_day_cvar": 13.751837779951117,
+    "traded_day_edge": 6.060823977194427,
+    "selection_credit": 0.9013938272409795,
+    "traded_coverage": 0.6686046511627907,
+    "traded_day_p": 0.000999000999000999,
+    "traded_day_obs": 4.593005894784761,
+    "honesty": "real_traded_edge",
+    "coverage_matched_obs": 1.626810852745859,
+    "coverage_matched_p": 0.016983016983016984,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": 1.8758391705129778,
+        "n": 120
+      },
+      "midday": {
+        "mean": 5.857239151905766,
+        "n": 32
+      },
+      "power_hour": {
+        "mean": 3.804081111402654,
+        "n": 29
+      },
+      "pre_close": {
+        "mean": 0.8908287245047747,
+        "n": 6
+      }
+    }
+  }
+}

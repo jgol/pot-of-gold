@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "embeddings",
+  "seed": 3,
+  "fold": 4,
+  "strategy_id": "embeddings-s3-f4-m010",
+  "fold_id": "embeddings-s3-f4",
+  "role": "front",
+  "front_rank": 10,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "LT(EmbProj_EMB_GRID_ATM_1(EMB_GRID_ATM), EmbProj_EMB_FLOW_RAW_0(EMB_FLOW_RAW))",
+    "exit_tree": "GT(EmbProj_EMB_SHARED_2(PROTO_EMB_SHARED_1), ProfitGiveback)",
+    "size_tree": "EmbProj_EMB_FLOW_AGG_0(EMB_FLOW_AGG)",
+    "delta_tree": "EmbProj_EMB_GRID_PUT_2(PROTO_EMB_GRID_PUT_1)",
+    "width_tree": "EmbProj_EMB_GRID_CALL_2(EMB_GRID_CALL)",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 2.667644902744904,
+    "template_name": "iron_condor",
+    "fitness": [
+      -1.6835804260503853,
+      1.7839519788075135,
+      -0.5272856433483898,
+      -1.6003487204902958
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 4,
+  "recorded": {
+    "train_neg_exp_raw": -2.0960821871025446,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": -0.24990548698784953,
+    "mean_per_day_excess": 0.9159837159412997,
+    "permutation_p": 0.026973026973026972,
+    "n_champion_trades": 4,
+    "tail_ok": true,
+    "champion_day_cvar": 1.4266961712052817,
+    "baseline_day_cvar": 4.67005313168562,
+    "traded_day_edge": 1.7068762867797471,
+    "selection_credit": 0.897374478980395,
+    "traded_coverage": 0.022988505747126436,
+    "traded_day_p": 0.6353646353646354,
+    "traded_day_obs": -0.24990548698784953,
+    "honesty": "selective_low_coverage",
+    "coverage_matched_obs": 0.0,
+    "coverage_matched_p": 1.0,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": null,
+        "n": 0
+      },
+      "midday": {
+        "mean": null,
+        "n": 0
+      },
+      "power_hour": {
+        "mean": -0.24990548698784953,
+        "n": 4
+      },
+      "pre_close": {
+        "mean": null,
+        "n": 0
+      }
+    }
+  }
+}

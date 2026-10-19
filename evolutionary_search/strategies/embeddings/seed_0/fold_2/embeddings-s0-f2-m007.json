@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "embeddings",
+  "seed": 0,
+  "fold": 2,
+  "strategy_id": "embeddings-s0-f2-m007",
+  "fold_id": "embeddings-s0-f2",
+  "role": "front",
+  "front_rank": 7,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "GT(EmbProj_EMB_STRIKE_1(EMB_STRIKE), EmbCos_EMB_GRID_CALL(EMB_GRID_CALL, PROTO_EMB_GRID_CALL_0))",
+    "exit_tree": "GT(EmbDir_EMB_SHARED(PROTO_EMB_SHARED_1, EmbBankIdx(5)), ProfitGiveback)",
+    "size_tree": "EmbDir_EMB_FLOW_AGG(EMB_FLOW_AGG, EmbBankIdx(0))",
+    "delta_tree": "EmbProj_EMB_GRID_CALL_2(PROTO_EMB_GRID_CALL_1)",
+    "width_tree": "Lag(EmbProj_EMB_GRID_ATM_2(EMB_GRID_ATM), EphInt(15))",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 2.271860548737206,
+    "template_name": "iron_condor",
+    "fitness": [
+      -2.0848388920339693,
+      9.886842833564359,
+      -0.0,
+      -0.45111748385606604
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 2,
+  "recorded": {
+    "train_neg_exp_raw": -1.1443402921422972,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": -0.3625721827420594,
+    "mean_per_day_excess": 3.54878011124308,
+    "permutation_p": 0.000999000999000999,
+    "n_champion_trades": 2,
+    "tail_ok": false,
+    "champion_day_cvar": 0.7251443654841188,
+    "baseline_day_cvar": 4.66983381214496,
+    "traded_day_edge": 3.944689446660841,
+    "selection_credit": 3.54651777218355,
+    "traded_coverage": 0.005681818181818182,
+    "traded_day_p": 1.0,
+    "traded_day_obs": -0.7251443654841188,
+    "honesty": "selective_low_coverage",
+    "coverage_matched_obs": 0.0,
+    "coverage_matched_p": 1.0,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": null,
+        "n": 0
+      },
+      "midday": {
+        "mean": -0.3625721827420594,
+        "n": 2
+      },
+      "power_hour": {
+        "mean": null,
+        "n": 0
+      },
+      "pre_close": {
+        "mean": null,
+        "n": 0
+      }
+    }
+  }
+}

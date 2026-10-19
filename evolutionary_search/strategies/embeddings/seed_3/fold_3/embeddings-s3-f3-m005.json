@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "embeddings",
+  "seed": 3,
+  "fold": 3,
+  "strategy_id": "embeddings-s3-f3-m005",
+  "fold_id": "embeddings-s3-f3",
+  "role": "front",
+  "front_rank": 5,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "GT(EmbDir_EMB_VAR_ATM_SPREAD(EMB_VAR_ATM_SPREAD, EmbBankIdx(3)), EmbProj_EMB_FLOW_AGG_1(EMB_FLOW_AGG))",
+    "exit_tree": "CrossBelow(IfThenElse(GT(EmbCos_EMB_FLOW_AGG(EMB_FLOW_AGG, PROTO_EMB_FLOW_AGG_0), VIXMean5d), BarOfDay, MaxAdverseExcursion), WeightedSum3(EmbCos_EMB_GRID_ATM(EMB_GRID_ATM, PROTO_EMB_GRID_ATM_1), IVRVGap5d, Abs(SPXReturn3d), Sqrt(RV5d), EmbCos_EMB_STRIKE(EMB_STRIKE, PROTO_EMB_STRIKE_0), WeightedSum3(EmbCos_EMB_FLOW_RAW(EMB_FLOW_RAW, PROTO_EMB_FLOW_RAW_1), EmbCos_EMB_GRID(EMB_GRID, PROTO_EMB_GRID_0), EmbDir_EMB_VAR_SPX_RET(EMB_VAR_SPX_RET, EmbBankIdx(4)), SPXReturn3d, EphReal(-0.0694), EmbCos_EMB_VAR_ATM_IV(EMB_VAR_ATM_IV, PROTO_EMB_VAR_ATM_IV_0))))",
+    "size_tree": "EmbProj_EMB_FLOW_AGG_0(EMB_FLOW_AGG)",
+    "delta_tree": "EmbProj_EMB_FLOW_RAW_2(PROTO_EMB_FLOW_RAW_0)",
+    "width_tree": "EmbProj_EMB_VIX_2(EMB_VIX)",
+    "shape": "call_vertical",
+    "shape_tree": "Shape_call_vertical",
+    "stop_mult": 2.9036326842548545,
+    "template_name": "iron_condor",
+    "fitness": [
+      -2.039558719047642,
+      5.6605630359189085,
+      -1.9982350604362866,
+      -0.4647124672846945
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 11,
+  "recorded": {
+    "train_neg_exp_raw": -0.7015951424923241,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": -3.657309166280713,
+    "mean_per_day_excess": 1.266826818034027,
+    "permutation_p": 0.011988011988011988,
+    "n_champion_trades": 11,
+    "tail_ok": false,
+    "champion_day_cvar": 22.78983146234012,
+    "baseline_day_cvar": 19.3820042054823,
+    "traded_day_edge": -1.0281306170830766,
+    "selection_credit": 1.4130024508440335,
+    "traded_coverage": 0.059880239520958084,
+    "traded_day_p": 0.9410589410589411,
+    "traded_day_obs": -4.023040082908784,
+    "honesty": "selective_low_coverage",
+    "coverage_matched_obs": 0.0,
+    "coverage_matched_p": 0.949050949050949,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": null,
+        "n": 0
+      },
+      "midday": {
+        "mean": -8.30753603023633,
+        "n": 2
+      },
+      "power_hour": {
+        "mean": -3.553788098504014,
+        "n": 7
+      },
+      "pre_close": {
+        "mean": 0.6305939604564543,
+        "n": 2
+      }
+    }
+  }
+}

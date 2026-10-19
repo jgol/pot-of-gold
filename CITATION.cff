@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use this software or the encoder experiment results, please cite the accompanying D.Eng praxis."
+message: "If you use this software or the experiment results, please cite the accompanying D.Eng praxis."
 title: "pot-of-gold — 0DTE options trading pipeline with transformer-based representation learning, genetic programming, and multi-agent LLM validation workflow."
 type: software
 authors:

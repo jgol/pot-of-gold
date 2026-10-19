@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "permuted_embeddings",
+  "seed": 1,
+  "fold": 2,
+  "strategy_id": "permuted_embeddings-s1-f2-m066",
+  "fold_id": "permuted_embeddings-s1-f2",
+  "role": "front",
+  "front_rank": 66,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "AND(LT(EmbCos_EMB_GRID(EMB_GRID, PROTO_EMB_GRID_0), EmbCos_EMB_VAR_ATM_IV(EMB_VAR_ATM_IV, PROTO_EMB_VAR_ATM_IV_1)), GT(VIXMean5d, Lag(Sub(EphReal(1.42), BarOfDay), EphInt(10))))",
+    "exit_tree": "CrossAbove(EmbProj_EMB_FLOW_RAW_0(EMB_FLOW_RAW), Sqrt(Lag(EmbDir_EMB_VAR_SPX_RET(EMB_VAR_SPX_RET, EmbBankIdx(6)), EphInt(3))))",
+    "size_tree": "EmbProj_EMB_GRID_2(PROTO_EMB_GRID_1)",
+    "delta_tree": "IfThenElse(CrossBelow(EmbProj_EMB_SPX_1(PROTO_EMB_SPX_1), Mul(Mul(Sqrt(EmbCos_EMB_VAR_SPX_RET(EMB_VAR_SPX_RET, PROTO_EMB_VAR_SPX_RET_0)), EmbProj_EMB_SPX_1(PROTO_EMB_SPX_1)), EmbDir_EMB_GRID(PROTO_EMB_GRID_0, EmbBankIdx(2)))), Delta(EmbDir_EMB_VAR_ATM_SPREAD(EMB_VAR_ATM_SPREAD, EmbBankIdx(6)), EphInt(5)), EmbProj_EMB_SPX_0(PROTO_EMB_SPX_1))",
+    "width_tree": "EphReal(0.0)",
+    "shape": "call_vertical",
+    "shape_tree": "Shape_call_vertical",
+    "stop_mult": 2.3947307976774517,
+    "template_name": "iron_condor",
+    "fitness": [
+      -0.2875538864134488,
+      0.9959768160340952,
+      -0.36035666954910767,
+      -0.0
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 4,
+  "recorded": {
+    "train_neg_exp_raw": -0.2875538864134488,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": -1.2967295169667505,
+    "mean_per_day_excess": 1.3597536932568088,
+    "permutation_p": 0.000999000999000999,
+    "n_champion_trades": 4,
+    "tail_ok": true,
+    "champion_day_cvar": 3.8950192944139945,
+    "baseline_day_cvar": 8.531992914856666,
+    "traded_day_edge": 1.06541457543119,
+    "selection_credit": 1.3677629209527442,
+    "traded_coverage": 0.026490066225165563,
+    "traded_day_p": 0.936063936063936,
+    "traded_day_obs": -1.2967295169667505,
+    "honesty": "selective_low_coverage",
+    "coverage_matched_obs": -1.8409175342478887,
+    "coverage_matched_p": 0.8961038961038961,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": null,
+        "n": 0
+      },
+      "midday": {
+        "mean": -3.8950192944139945,
+        "n": 1
+      },
+      "power_hour": {
+        "mean": -0.4306329244843361,
+        "n": 3
+      },
+      "pre_close": {
+        "mean": null,
+        "n": 0
+      }
+    }
+  }
+}

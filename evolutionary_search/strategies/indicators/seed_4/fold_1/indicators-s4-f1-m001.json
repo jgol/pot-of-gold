@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "indicators",
+  "seed": 4,
+  "fold": 1,
+  "strategy_id": "indicators-s4-f1-m001",
+  "fold_id": "indicators-s4-f1",
+  "role": "front",
+  "front_rank": 1,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "AND(GT(ATM_IV, EphReal(0.863741)), AND(GT(MinutesToClose, EphReal(1.180365)), GT(ATM_IV, EphReal(0.863741))))",
+    "exit_tree": "LT(PutCallSkew, EphReal(1.0))",
+    "size_tree": "DeltaSpread5",
+    "delta_tree": "OvernightGap",
+    "width_tree": "EphReal(2.6316)",
+    "shape": "long_strangle",
+    "shape_tree": "Shape_long_strangle",
+    "stop_mult": 2.5331962950608284,
+    "template_name": "iron_condor",
+    "fitness": [
+      -12.378299458051412,
+      10.135120421645812,
+      -0.0,
+      -0.0
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 5,
+  "recorded": {
+    "train_neg_exp_raw": -12.378299458051412,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": -4.555940169105567,
+    "mean_per_day_excess": 3.412856117391065,
+    "permutation_p": 0.000999000999000999,
+    "n_champion_trades": 5,
+    "tail_ok": true,
+    "champion_day_cvar": 9.954491365656352,
+    "baseline_day_cvar": 9.954491365656352,
+    "traded_day_edge": 1.9180930440992192,
+    "selection_credit": 3.45630853231234,
+    "traded_coverage": 0.02824858757062147,
+    "traded_day_p": 1.0,
+    "traded_day_obs": -4.555940169105567,
+    "honesty": "selective_low_coverage",
+    "coverage_matched_obs": -2.687115654864235,
+    "coverage_matched_p": 0.5564435564435565,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": -4.555940169105567,
+        "n": 5
+      },
+      "midday": {
+        "mean": null,
+        "n": 0
+      },
+      "power_hour": {
+        "mean": null,
+        "n": 0
+      },
+      "pre_close": {
+        "mean": null,
+        "n": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "indicators",
+  "seed": 0,
+  "fold": 4,
+  "strategy_id": "indicators-s0-f4-m025",
+  "fold_id": "indicators-s0-f4",
+  "role": "front",
+  "front_rank": 25,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "LT(RealizedVol30m, DeltaSpread5)",
+    "exit_tree": "CrossAbove(UnrealizedProfitPct, Sqrt(Sqrt(VIXSpot)))",
+    "size_tree": "BarOfDay",
+    "delta_tree": "ATM_IV",
+    "width_tree": "EphReal(-0.5876)",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 2.824169640192915,
+    "template_name": "iron_condor",
+    "fitness": [
+      0.4659570647156199,
+      9.204000676376547,
+      -0.0,
+      -0.0
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 225,
+  "recorded": {
+    "train_neg_exp_raw": 0.4659570647156199,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": -0.6783657519694646,
+    "mean_per_day_excess": 0.8542136341151088,
+    "permutation_p": 0.1028971028971029,
+    "n_champion_trades": 225,
+    "tail_ok": false,
+    "champion_day_cvar": 15.866083313713013,
+    "baseline_day_cvar": 12.739691925025271,
+    "traded_day_edge": 0.8542136341151088,
+    "selection_credit": 0.0,
+    "traded_coverage": 1.0,
+    "traded_day_p": 0.945054945054945,
+    "traded_day_obs": -0.8721845382464545,
+    "honesty": "weak_traded_edge",
+    "coverage_matched_obs": null,
+    "coverage_matched_p": null,
+    "cms_resolution_ok": false,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": null,
+        "n": 0
+      },
+      "midday": {
+        "mean": -0.7828292348674053,
+        "n": 178
+      },
+      "power_hour": {
+        "mean": 0.11167213213965654,
+        "n": 34
+      },
+      "pre_close": {
+        "mean": -1.3142725291907456,
+        "n": 13
+      }
+    }
+  }
+}

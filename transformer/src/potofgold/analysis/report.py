@@ -139,7 +139,66 @@ def _plot(rows, metrics, title, caption, group="label"):
     return f"<figure><img alt='{escape(title)}' src='data:image/png;base64,{encoded}'><figcaption>{escape(caption)}</figcaption></figure>"
 
 
-def _geometry_section(rows, *, caption, plot_split="test"):
+def _rankme_split_plot(rows, seed_rows):
+    """Plot saved per-seed RankMe paths and means across the data splits."""
+    def point(value):
+        if isinstance(value, dict):
+            return value.get("mean", value.get("value", value.get("point")))
+        return value
+
+    means, seeds = [], []
+    for source, destination in ((rows, means), (seed_rows, seeds)):
+        for row in source:
+            value = point(row.get("rankme"))
+            if row.get("split") in SPLITS and value is not None and math.isfinite(value):
+                destination.append(dict(row, rankme=value, position=list(SPLITS).index(row["split"])))
+    splits = [split for split in SPLITS if any(row["split"] == split for row in means)]
+    if len(splits) < 2 or not seeds:
+        return ""
+    # A mean path requires one saved summary per tokenizer and split. Reports
+    # without these summaries retain their existing per-run plots and tables.
+    if len({(row["tokenizer"], row["split"]) for row in means}) != len(means):
+        return ""
+
+    os.environ.setdefault("MPLCONFIGDIR", str(Path(tempfile.gettempdir()) / "potofgold-matplotlib"))
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from matplotlib.ticker import MaxNLocator, FormatStrFormatter
+    import pandas as pd
+    import seaborn as sns
+
+    order = list(dict.fromkeys(row["tokenizer"] for row in means))
+    reference_colors = {"Linear": "#0072b2", "Patch": "#e69f00", "Convolutional": "#009e73"}
+    palette = {name: reference_colors.get(NAMES.get(name, name), COLORS.get(name, "#667085")) for name in order}
+    sns.set_theme(style="whitegrid", context="notebook", font_scale=1.3,
+                  rc={"grid.linewidth": 1.3, "axes.spines.top": False, "axes.spines.right": False})
+    fig, ax = plt.subplots(figsize=(10.2, 6.3))
+    sns.lineplot(data=pd.DataFrame(seeds), x="position", y="rankme", hue="tokenizer",
+                 hue_order=order, palette=palette, units="seed", estimator=None,
+                 errorbar=None, alpha=.25, linewidth=1.3, legend=False, ax=ax)
+    sns.lineplot(data=pd.DataFrame(means), x="position", y="rankme", hue="tokenizer",
+                 hue_order=order, palette=palette, estimator=None, errorbar=None,
+                 marker="o", markersize=10, linewidth=3.3, ax=ax)
+    ax.set(xlabel="", ylabel="Effective rank (RankMe)",
+           xticks=[list(SPLITS).index(split) for split in splits],
+           xticklabels=[SPLITS[split] for split in splits])
+    ax.yaxis.set_major_locator(MaxNLocator(nbins=8, steps=[1, 2, 2.5, 5, 10]))
+    ax.yaxis.set_major_formatter(FormatStrFormatter("%.1f"))
+    handles, _ = ax.get_legend_handles_labels()
+    ax.legend(handles, [NAMES.get(name, name) for name in order],
+              loc="center right", frameon=False, title=None, fontsize=13)
+    fig.tight_layout()
+    buffer = io.BytesIO()
+    fig.savefig(buffer, format="png", dpi=145, bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+    encoded = base64.b64encode(buffer.getvalue()).decode("ascii")
+    title = "Effective rank (RankMe) across training, validation and test splits"
+    caption = "Thin lines show individual training seeds; thick lines and markers show the saved means across seeds. Each split is measured separately using the trained encoders."
+    return f"<figure><img alt='{escape(title)}' src='data:image/png;base64,{encoded}'><figcaption>{escape(caption)}</figcaption></figure>"
+
+
+def _geometry_section(rows, *, caption, plot_split="test", seed_rows=()):
     if not rows:
         return ""
     available = list(dict.fromkeys(r.get("split", "unspecified") for r in rows))
@@ -148,6 +207,7 @@ def _geometry_section(rows, *, caption, plot_split="test"):
     preferred = [r for r in rows if r.get("split", "unspecified") == selected_split]
     content = "<h2>Representation structure</h2>"
     content += paragraph("RankMe measures how evenly the singular values are spread across embedding directions. Participation ratio measures how broadly variance is distributed. Higher values alone do not establish useful prediction.")
+    content += _rankme_split_plot(rows, seed_rows)
     content += _plot(preferred, ("rankme", "pr"), "Representation structure · " + SPLITS.get(selected_split, selected_split).lower() + " data", caption, group="tokenizer")
     content += table(["Split", "Tokenizer", "Windows", "Dimensions", "RankMe [95% CI]", "Participation ratio [95% CI]"], [
         [SPLITS.get(r.get("split"), r.get("split", "—")), NAMES.get(r["tokenizer"], r["tokenizer"]), r.get("n_windows", "—"), r.get("d_model", "—"), statistic(r.get("rankme"), 2), statistic(r.get("pr"), 2)] for r in rows])
@@ -181,7 +241,7 @@ def _archive(record):
     seeds = summary.get("seeds", [])
     output = paragraph("Original experiment · saved measurements", "eyebrow")
     output += _reproduction_notice()
-    geometry, predictions, seed_rows, extra_predictions = [], [], [], []
+    geometry, predictions, seed_rows, extra_predictions, seed_geometry = [], [], [], [], []
     for split in ("train", "val", "test"):
         for tokenizer in tokenizers:
             tokenizer_record = summary["per_tokenizer"][tokenizer]
@@ -193,6 +253,8 @@ def _archive(record):
             geometry.append(dict(tokenizer=tokenizer, split=split, n_windows=summary.get("n_eval_by_window", {}).get(split, "—"), d_model=summary.get("d_model"), rankme=result.get("rankme"), pr=result.get("pr")))
             # Each per_seed array follows summary["seeds"] in order.
             for i, seed in enumerate(seeds):
+                seed_geometry.append(dict(tokenizer=tokenizer, split=split, seed=seed,
+                                          rankme=result.get("rankme", {}).get("per_seed", [])[i]))
                 seed_rows.append([SPLITS[split], NAMES.get(tokenizer, tokenizer), seed,
                                   number(result.get("rankme", {}).get("per_seed", [])[i], 2),
                                   number(result.get("pr", {}).get("per_seed", [])[i], 2)])
@@ -205,7 +267,7 @@ def _archive(record):
                     else:
                         extra_predictions.append([SPLITS[split], label, NAMES.get(tokenizer, tokenizer), statistic(row["rank_ic"]), statistic(row["r2"])])
     ci_caption = "Points: recorded means. Bars: 95% Student-t intervals across training seeds on the same dataset."
-    output += _geometry_section(geometry, caption=ci_caption)
+    output += _geometry_section(geometry, caption=ci_caption, seed_rows=seed_geometry)
     comparison = summary.get("five_percent_comparison", {}).get("effective_rank", {})
     if comparison:
         output += table(["Effective-rank comparison", "Relative difference [95% CI]"], [[
@@ -228,7 +290,7 @@ def _archive(record):
 def _reproduction_notice():
     return "<aside><strong>What is required to reproduce the original experiment?</strong>" + paragraph(
         "Recomputing the original experimental measurements requires the original processed market dataset and the corresponding trained encoder checkpoints. The licensed original data cannot be redistributed and is not included. Rendering saved measurements recreates their report; synthetic data produces new measurements, not the original experimental results."
-    ) + paragraph("The three released checkpoints are from seed 4395. Recomputing the archived five-seed comparison requires all 15 original checkpoints, as well as the original corpus.") + "</aside>"
+    ) + paragraph("All 15 original checkpoints are included: linear, patch and convolutional tokenizers at seeds 0, 42, 4395, 5040 and 6118. Recomputing the archived five-seed comparison also requires the original licensed corpus.") + "</aside>"
 
 
 def _indicator_section(refit):
@@ -267,7 +329,7 @@ def _indicator_section(refit):
 
 
 def _single_checkpoint_section(record):
-    """Keep released-checkpoint diagnostics apart from the archive's seed averages."""
+    """Keep single-seed diagnostics apart from the archive's seed averages."""
     saved = record.get("checkpoint_evaluation", {})
     probe = record.get("checkpoint_probe", {})
     if not saved:
@@ -277,7 +339,7 @@ def _single_checkpoint_section(record):
         geometry.append([NAMES.get(tokenizer, tokenizer), statistic({"mean": result.get("rankme"), "ci": result.get("rankme_ci")}, 2), statistic({"mean": result.get("pr"), "ci": result.get("pr_ci")}, 2)])
         for target, result_target in result.get("targets", {}).items():
             scores.append([NAMES.get(tokenizer, tokenizer), TARGETS.get(target, target)] + [statistic({"mean": result_target.get(m), "ci": result_target.get(m + "_ci")}) for m in ("rank_ic", "r2")])
-    content = paragraph(f"Released seed {saved.get('released_seed', '4395')}: {saved.get('n_eval', '—')} windows on {saved.get('n_days', '—')} test days. These intervals use {saved.get('config', {}).get('bootstrap_B', '—')} resamples of whole test-day groups, with fitted probes and encoder weights fixed. They do not include training-seed or probe-fitting uncertainty. Percentile intervals need not contain the original point estimate.")
+    content = paragraph(f"Seed {saved.get('released_seed', '4395')}: {saved.get('n_eval', '—')} windows on {saved.get('n_days', '—')} test days. These intervals use {saved.get('config', {}).get('bootstrap_B', '—')} resamples of whole test-day groups, with fitted probes and encoder weights fixed. They do not include training-seed or probe-fitting uncertainty. Percentile intervals need not contain the original point estimate.")
     content += table(["Tokenizer", "RankMe [95% CI]", "Participation ratio [95% CI]"], geometry)
     content += table(["Tokenizer", "Residual target", "RankIC [95% CI]", "R² [95% CI]"], scores)
     supplementary, spectra = [], []
@@ -294,7 +356,7 @@ def _single_checkpoint_section(record):
     content += paragraph("The covariance decay exponent is the negative fitted log–log slope of variance against direction rank. The variance hinge averages shortfalls below the per-dimension standard-deviation target; it is a training diagnostic, not a financial score.")
     content += paragraph("Supplementary probe diagnostics: Pearson IC, sign agreement, and the 95th percentile of shuffled-embedding RankIC scores. The shuffle result is a probe sanity check, not an alternative trading strategy.")
     content += table(["Tokenizer", "Residual target", "Pearson IC", "Sign agreement", "Shuffled RankIC (95th pct.)"], supplementary)
-    return details("Released-checkpoint measurements (seed 4395)", content)
+    return details("Single-seed measurements (seed 4395)", content)
 
 
 def _evaluation(record):
@@ -311,15 +373,21 @@ def _evaluation(record):
     source = record.get("source_kind", "new")
     evaluation = record.get("evaluation", {})
     eval_window = evaluation.get("eval_window", "test")
-    source_name = {"synthetic": "Synthetic data", "original": "Original experiment data", "new": "User-supplied data"}.get(source, source)
+    source_name = {"synthetic": "Synthetic data", "original": "Original experiment data", "new": "User-supplied data",
+                   "archived_measurements": "Original experiment"}.get(source, source)
     output = paragraph(source_name + " · saved measurements", "eyebrow")
-    output += paragraph("This report renders metrics already computed from exported embeddings. Rendering does not train an encoder or run an evaluation.", "lead")
+    if source == "archived_measurements":
+        output += paragraph("The evaluator recalculated representation means, confidence intervals and the 5% effective-rank milestone from archived per-seed measurements. This report displays those recalculated results.", "lead")
+    else:
+        output += paragraph("This report renders metrics already computed from exported embeddings. Rendering does not train an encoder or run an evaluation.", "lead")
     if source == "synthetic":
         output += "<aside>" + paragraph("These are measurements on generated synthetic data. They demonstrate the workflow and do not reproduce the original market-data results or establish trading performance.") + "</aside>"
     elif source == "original":
         output += _reproduction_notice()
-    output += table(["Tokenizer", "Seed", "Dimensions", "Embedding file"], [
-        [NAMES.get(r.get("tokenizer"), r.get("tokenizer", "—")), r.get("seed", "—"), r.get("d_model", "—"), Path(r.get("embedding_file", "—")).name] for r in runs])
+    source_label = "Measurement archive" if source == "archived_measurements" else "Embedding file"
+    output += table(["Tokenizer", "Seed", "Dimensions", source_label], [
+        [NAMES.get(r.get("tokenizer"), r.get("tokenizer", "—")), r.get("seed", "—"), r.get("d_model", "—"),
+         Path(record.get("source", {}).get("path", "—") if source == "archived_measurements" else r.get("embedding_file", "—")).name] for r in runs])
     split_dates = record.get("corpus", {}).get("split_dates", {})
     split_rows = []
     for split in ("train", "val", "test"):
@@ -330,13 +398,16 @@ def _evaluation(record):
             split_rows.append([SPLITS[split], split_dates.get(split + "_start", "—"), split_dates.get(split + "_end", "—"), ", ".join(days) or "—", ", ".join(windows) or "—"])
     output += table(["Split", "Configured start", "Configured end", "Evaluated days", "Evaluated windows"], split_rows)
     output += paragraph("Split dates are configured boundaries. Counts reflect available observations after evaluation filtering; different counts across runs are listed separately.")
-    output += paragraph(f"Evaluation split: {SPLITS.get(eval_window, eval_window).lower()}. Embargo: {evaluation.get('embargo_days', '—')} trading days. Geometry and residual-probe bootstrap: {evaluation.get('bootstrap_repeats', '—')} resamples; random seed {evaluation.get('bootstrap_seed', '—')}.")
+    if source == "archived_measurements":
+        output += paragraph(f"Evaluation split: {SPLITS.get(eval_window, eval_window).lower()}. Replication unit: encoder seed on the recorded evaluation dates.")
+    else:
+        output += paragraph(f"Evaluation split: {SPLITS.get(eval_window, eval_window).lower()}. Embargo: {evaluation.get('embargo_days', '—')} trading days. Geometry and residual-probe bootstrap: {evaluation.get('bootstrap_repeats', '—')} resamples; random seed {evaluation.get('bootstrap_seed', '—')}.")
     ci_method = evaluation.get("ci_method", "Confidence intervals, where present, are supplied by the saved evaluation record.")
     if isinstance(ci_method, dict):
         ci_method = "; ".join(f"{k}: {v}" for k, v in ci_method.items())
     output += paragraph("Uncertainty: " + str(ci_method))
     aggregates = record.get("seed_aggregates", {})
-    geometry, predictions, individual, individual_predictions = [], [], [], []
+    geometry, predictions, individual, individual_predictions, seed_geometry = [], [], [], [], []
     # Prefer saved across-seed summaries when any tokenizer has multiple seeds.
     # Otherwise show per-run metrics and their saved day-bootstrap intervals.
     # In a mixed aggregate report, single-seed groups have no across-seed interval.
@@ -346,6 +417,7 @@ def _evaluation(record):
         tokenizer, seed = run.get("tokenizer", "unknown"), run.get("seed", "—")
         for split, result in run.get("windows", {}).items():
             geom = result.get("geometry", {})
+            seed_geometry.append(dict(tokenizer=tokenizer, split=split, seed=seed, rankme=geom.get("rankme")))
             individual.append([NAMES.get(tokenizer, tokenizer), seed, SPLITS.get(split, split), result.get("n_days", "—"), result.get("n_windows", "—"), statistic(geom.get("rankme"), 2), statistic(geom.get("participation_ratio", geom.get("pr")), 2)])
             if not use_aggregates:
                 geometry.append(dict(tokenizer=tokenizer, split=split, n_windows=result.get("n_windows", "—"), d_model=run.get("d_model", "—"), rankme=geom.get("rankme"), pr=geom.get("participation_ratio", geom.get("pr"))))
@@ -367,21 +439,31 @@ def _evaluation(record):
                         predictions.append(dict(tokenizer=tokenizer, label=TARGETS.get(target, target), rank_ic=value.get("rank_ic"), r2=value.get("r2")))
     caption = ("Points: means across training seeds. Bars: 95% Student-t intervals across seeds; no interval for a single seed." if use_aggregates else
                "Points: computed metrics. Bars, where present: saved 95% intervals from resampling whole evaluation days.")
-    output += _geometry_section(geometry, caption=caption, plot_split=eval_window)
+    output += _geometry_section(geometry, caption=caption, plot_split=eval_window, seed_rows=seed_geometry)
     if record.get("seed_comparisons"):
         comparison_rows = []
+        show_threshold = any("threshold_pct" in item for item in record["seed_comparisons"])
         for item in record["seed_comparisons"]:
             if item.get("metric") != "relative_rankme_pct":
                 continue
             others = ", ".join(NAMES.get(tokenizer, tokenizer) + " (" + str(count) + ")" for tokenizer, count in item.get("next_best_counts", {}).items())
-            comparison_rows.append([NAMES.get(item.get("tokenizer"), item.get("tokenizer", "—")), SPLITS.get(item.get("window"), item.get("window", "—")), ", ".join(map(str, item.get("seeds", []))), others or "Best other selected tokenizer", statistic(item, 2) + "%"])
+            row = [NAMES.get(item.get("tokenizer"), item.get("tokenizer", "—")), SPLITS.get(item.get("window"), item.get("window", "—")), ", ".join(map(str, item.get("seeds", []))), others or "Best other selected tokenizer", statistic(item, 2) + "%"]
+            if show_threshold:
+                passed = item.get("lower_ci_exceeds_threshold")
+                row.append("—" if passed is None else f'{"Yes" if passed else "No"} ({number(item["threshold_pct"], 0)}%)')
+            comparison_rows.append(row)
         output += paragraph("Relative effective-rank comparisons use the best other selected tokenizer within each matched seed. The percentage differences are formed before averaging across seeds. Brackets show a 95% Student-t interval when more than one matched seed is available.")
-        output += table(["Tokenizer", "Split", "Matched seeds", "Comparator (seed count)", "RankMe difference [95% CI]"], comparison_rows)
+        headers = ["Tokenizer", "Split", "Matched seeds", "Comparator (seed count)", "RankMe difference [95% CI]"]
+        if show_threshold:
+            headers.append("Lower CI bound exceeds threshold?")
+        output += table(headers, comparison_rows)
     output += details("Measurements and sample counts for each run", table(["Tokenizer", "Seed", "Split", "Days", "Windows", "RankMe [95% CI]", "Participation ratio [95% CI]"], individual))
     output += _prediction_section(predictions, title="Prediction of residual targets", explanation=
         "Frozen embeddings are used to fit Ridge probes to residual financial targets. The target residuals are formed by subtracting a linear indicator model fitted on training data. RankIC measures agreement between predicted and observed rankings. R² measures squared-error performance relative to predicting the evaluation target mean. These scores do not measure strategy profitability.", caption=caption)
     if individual_predictions:
         output += details("Residual-target scores for each run and split", table(["Tokenizer", "Seed", "Split", "Target", "RankIC [95% CI]", "R² [95% CI]"], individual_predictions))
+    elif source == "archived_measurements":
+        output += paragraph("This recalculation covers representation geometry and the effective-rank comparison.")
     else:
         output += paragraph("Prediction metrics were not requested. This record evaluates the structure of the exported embeddings only.")
     # Original targets use a separate indicator comparison, not the residual

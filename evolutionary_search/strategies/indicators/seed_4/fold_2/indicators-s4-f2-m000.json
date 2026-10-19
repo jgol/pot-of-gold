@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "indicators",
+  "seed": 4,
+  "fold": 2,
+  "strategy_id": "indicators-s4-f2-m000",
+  "fold_id": "indicators-s4-f2",
+  "role": "front",
+  "front_rank": 0,
+  "is_champion": true,
+  "genome": {
+    "entry_tree": "LT(ATM_IV_5m, EphReal(0.837179))",
+    "exit_tree": "CrossBelow(Sqrt(VIXMean5d), UnrealizedProfitPct)",
+    "size_tree": "RawSpread",
+    "delta_tree": "OvernightGap",
+    "width_tree": "EphReal(-1.5522)",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 2.60884631861387,
+    "template_name": "iron_condor",
+    "fitness": [
+      -2.666615166240672,
+      15.946020813134412,
+      -0.0,
+      -1.1155493116904276
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 243,
+  "recorded": {
+    "train_neg_exp_raw": -1.259411977743841,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": 0.328464248148627,
+    "mean_per_day_excess": 3.2047437393255085,
+    "permutation_p": 0.000999000999000999,
+    "n_champion_trades": 243,
+    "tail_ok": false,
+    "champion_day_cvar": 14.00495958929771,
+    "baseline_day_cvar": 11.652802116690822,
+    "traded_day_edge": 3.0088152805886152,
+    "selection_credit": 8.756050070204155,
+    "traded_coverage": 0.9659090909090909,
+    "traded_day_p": 0.3026973026973027,
+    "traded_day_obs": 0.4695106605889198,
+    "honesty": "weak_traded_edge",
+    "coverage_matched_obs": -0.3259082088029316,
+    "coverage_matched_p": 0.6893106893106893,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": -0.22571922456381638,
+        "n": 149
+      },
+      "midday": {
+        "mean": 4.108970984159666,
+        "n": 32
+      },
+      "power_hour": {
+        "mean": 0.49872128011922057,
+        "n": 39
+      },
+      "pre_close": {
+        "mean": -1.6299228112014736,
+        "n": 23
+      }
+    }
+  }
+}

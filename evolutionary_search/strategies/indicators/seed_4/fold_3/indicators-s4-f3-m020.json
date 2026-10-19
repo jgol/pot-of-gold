@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "indicators",
+  "seed": 4,
+  "fold": 3,
+  "strategy_id": "indicators-s4-f3-m020",
+  "fold_id": "indicators-s4-f3",
+  "role": "front",
+  "front_rank": 20,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "LT(RealizedVol30m_5m, EphReal(0.0))",
+    "exit_tree": "LT(Sqrt(VIXTermSlope), UnrealizedProfitPct)",
+    "size_tree": "Delta(ThetaUrgency, EphInt(15))",
+    "delta_tree": "VIXSpot",
+    "width_tree": "ThetaUrgency",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 3.3314735395854296,
+    "template_name": "iron_condor",
+    "fitness": [
+      0.5983916845160289,
+      8.91782811221798,
+      -0.0,
+      -0.0
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 186,
+  "recorded": {
+    "train_neg_exp_raw": 0.5983916845160289,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": -0.7296491317865392,
+    "mean_per_day_excess": 1.381713297326597,
+    "permutation_p": 0.000999000999000999,
+    "n_champion_trades": 186,
+    "tail_ok": true,
+    "champion_day_cvar": 8.064563990401808,
+    "baseline_day_cvar": 12.33682279750451,
+    "traded_day_edge": 1.3567342977623358,
+    "selection_credit": 1.646490692707765,
+    "traded_coverage": 0.9137931034482759,
+    "traded_day_p": 0.994005994005994,
+    "traded_day_obs": -0.8535518145427442,
+    "honesty": "weak_traded_edge",
+    "coverage_matched_obs": -0.7432212355116513,
+    "coverage_matched_p": 0.14685314685314685,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": -0.6992030470216493,
+        "n": 124
+      },
+      "midday": {
+        "mean": -0.5266209973412722,
+        "n": 40
+      },
+      "power_hour": {
+        "mean": 2.0571731836633083,
+        "n": 12
+      },
+      "pre_close": {
+        "mean": -5.263479899192062,
+        "n": 10
+      }
+    }
+  }
+}

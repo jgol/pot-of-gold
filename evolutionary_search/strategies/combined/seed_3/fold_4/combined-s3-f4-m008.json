@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "combined",
+  "seed": 3,
+  "fold": 4,
+  "strategy_id": "combined-s3-f4-m008",
+  "fold_id": "combined-s3-f4",
+  "role": "front",
+  "front_rank": 8,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "GT(EphReal(-0.5), EmbProj_EMB_GRID_CALL_1(EMB_GRID_CALL))",
+    "exit_tree": "GT(UnrealizedProfitPct, EmbProj_EMB_VIX_1(PROTO_EMB_VIX_1))",
+    "size_tree": "EmbProj_EMB_FLOW_AGG_0(EMB_FLOW_AGG)",
+    "delta_tree": "EmbProj_EMB_GRID_PUT_1(EMB_GRID_PUT)",
+    "width_tree": "EmbDir_EMB_SPX(EMB_SPX, EmbBankIdx(6))",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 2.133586130058192,
+    "template_name": "iron_condor",
+    "fitness": [
+      -2.241396401351139,
+      0.13158700506350246,
+      -0.0,
+      -2.1962410884894283
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 4,
+  "recorded": {
+    "train_neg_exp_raw": -2.241396401351139,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": 1.5857461004466766,
+    "mean_per_day_excess": 0.9408337039389256,
+    "permutation_p": 0.059940059940059943,
+    "n_champion_trades": 4,
+    "tail_ok": true,
+    "champion_day_cvar": 0.0,
+    "baseline_day_cvar": 9.705779699751027,
+    "traded_day_edge": 5.689233736886165,
+    "selection_credit": 0.8228610323129072,
+    "traded_coverage": 0.024242424242424242,
+    "traded_day_p": 0.06493506493506493,
+    "traded_day_obs": 1.5857461004466766,
+    "honesty": "selective_low_coverage",
+    "coverage_matched_obs": 0.0,
+    "coverage_matched_p": 1.0,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": null,
+        "n": 0
+      },
+      "midday": {
+        "mean": null,
+        "n": 0
+      },
+      "power_hour": {
+        "mean": 1.5857461004466766,
+        "n": 4
+      },
+      "pre_close": {
+        "mean": null,
+        "n": 0
+      }
+    }
+  }
+}

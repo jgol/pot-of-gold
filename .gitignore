@@ -24,7 +24,7 @@ local_store/
 *.feather
 *.arrow
 
-# Generated runs and model files; only the original three checkpoints are released.
+# Generated runs and model files; only the named research assets are released.
 runs/
 *.pt
 *.pth
@@ -34,13 +34,31 @@ runs/
 !/transformer/checkpoints/encoder_linear.pt
 !/transformer/checkpoints/encoder_patch.pt
 !/transformer/checkpoints/encoder_convolutional.pt
+!/transformer/checkpoints/encoder_linear_s0.pt
+!/transformer/checkpoints/encoder_linear_s42.pt
+!/transformer/checkpoints/encoder_linear_s5040.pt
+!/transformer/checkpoints/encoder_linear_s6118.pt
+!/transformer/checkpoints/encoder_patch_s0.pt
+!/transformer/checkpoints/encoder_patch_s42.pt
+!/transformer/checkpoints/encoder_patch_s5040.pt
+!/transformer/checkpoints/encoder_patch_s6118.pt
+!/transformer/checkpoints/encoder_convolutional_s0.pt
+!/transformer/checkpoints/encoder_convolutional_s42.pt
+!/transformer/checkpoints/encoder_convolutional_s5040.pt
+!/transformer/checkpoints/encoder_convolutional_s6118.pt
 /transformer/results/*
 !/transformer/results/report.html
 !/transformer/results/experiment.json
+/evolutionary_search/checkpoints/*
+!/evolutionary_search/checkpoints/encoder_convolutional_gp_seed42.pt
+/evolutionary_search/results/*
+!/evolutionary_search/results/outcomes.npz
+!/evolutionary_search/results/report.html
 *.log
 
 # Local verification tests are not part of the published repository.
 /transformer/tests/
+/evolutionary_search/tests/
 
 # Python, build tools and local editor state
 __pycache__/

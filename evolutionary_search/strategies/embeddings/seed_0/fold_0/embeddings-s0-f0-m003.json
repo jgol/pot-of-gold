@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "embeddings",
+  "seed": 0,
+  "fold": 0,
+  "strategy_id": "embeddings-s0-f0-m003",
+  "fold_id": "embeddings-s0-f0",
+  "role": "front",
+  "front_rank": 3,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "LT(VIXMean5d, EmbDir_EMB_SHARED(EMB_SHARED, EmbBankIdx(4)))",
+    "exit_tree": "LT(EmbDir_EMB_GRID_CALL(EMB_GRID_CALL, EmbBankIdx(0)), UnrealizedProfitPct)",
+    "size_tree": "EmbDir_EMB_STRIKE(PROTO_EMB_STRIKE_1, EmbBankIdx(0))",
+    "delta_tree": "EmbProj_EMB_STRIKE_0(PROTO_EMB_STRIKE_1)",
+    "width_tree": "EmbDir_EMB_VAR_ATM_SPREAD(EMB_VAR_ATM_SPREAD, EmbBankIdx(0))",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 2.4664421218341155,
+    "template_name": "iron_condor",
+    "fitness": [
+      -2.5070041350746535,
+      17.0299741841288,
+      -4.217249670222254,
+      -1.3040043347284742
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 324,
+  "recorded": {
+    "train_neg_exp_raw": -1.5269226916396947,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": 0.2235420014064351,
+    "mean_per_day_excess": 2.614737289806538,
+    "permutation_p": 0.000999000999000999,
+    "n_champion_trades": 324,
+    "tail_ok": false,
+    "champion_day_cvar": 20.448641627484363,
+    "baseline_day_cvar": 11.587905720207036,
+    "traded_day_edge": 2.813515163974912,
+    "selection_credit": 2.1407285129434945,
+    "traded_coverage": 0.7045454545454546,
+    "traded_day_p": 0.3196803196803197,
+    "traded_day_obs": 0.5840936165781053,
+    "honesty": "weak_traded_edge",
+    "coverage_matched_obs": 1.8332251022538775,
+    "coverage_matched_p": 0.000999000999000999,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": 1.8410352716109524,
+        "n": 121
+      },
+      "midday": {
+        "mean": 3.0591080354071813,
+        "n": 49
+      },
+      "power_hour": {
+        "mean": 0.3690565052942685,
+        "n": 88
+      },
+      "pre_close": {
+        "mean": -5.041074630455873,
+        "n": 66
+      }
+    }
+  }
+}

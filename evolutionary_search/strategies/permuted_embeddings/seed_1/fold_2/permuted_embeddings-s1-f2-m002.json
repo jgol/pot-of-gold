@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "permuted_embeddings",
+  "seed": 1,
+  "fold": 2,
+  "strategy_id": "permuted_embeddings-s1-f2-m002",
+  "fold_id": "permuted_embeddings-s1-f2",
+  "role": "front",
+  "front_rank": 2,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "AND(LT(EmbCos_EMB_GRID(EMB_GRID, PROTO_EMB_GRID_0), EmbCos_EMB_VAR_ATM_IV(EMB_VAR_ATM_IV, PROTO_EMB_VAR_ATM_IV_1)), GT(VIXMean5d, EphReal(1.254686)))",
+    "exit_tree": "LT(SessionReturn, EphReal(0.0))",
+    "size_tree": "EmbProj_EMB_GRID_2(PROTO_EMB_GRID_0)",
+    "delta_tree": "EmbProj_EMB_GRID_CALL_1(EMB_GRID_CALL)",
+    "width_tree": "EmbDir_EMB_VIX(EMB_VIX, EmbBankIdx(1))",
+    "shape": "long_strangle",
+    "shape_tree": "Shape_long_strangle",
+    "stop_mult": 3.0040395828477218,
+    "template_name": "iron_condor",
+    "fitness": [
+      -2.40712164340214,
+      3.3413846936339953,
+      -0.0,
+      -0.0
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 3,
+  "recorded": {
+    "train_neg_exp_raw": -0.06459286951471856,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": -3.9613672515465908,
+    "mean_per_day_excess": 3.6008704080283462,
+    "permutation_p": 0.000999000999000999,
+    "n_champion_trades": 3,
+    "tail_ok": false,
+    "champion_day_cvar": 5.536206047684889,
+    "baseline_day_cvar": 5.107904316912645,
+    "traded_day_edge": 0.7973825834542887,
+    "selection_credit": 3.649485803830208,
+    "traded_coverage": 0.017045454545454544,
+    "traded_day_p": 1.0,
+    "traded_day_obs": -3.9613672515465908,
+    "honesty": "selective_low_coverage",
+    "coverage_matched_obs": -1.3197931185708442,
+    "coverage_matched_p": 0.24775224775224775,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": -3.1245745152357243,
+        "n": 1
+      },
+      "midday": {
+        "mean": -3.2233211917191595,
+        "n": 1
+      },
+      "power_hour": {
+        "mean": -5.536206047684889,
+        "n": 1
+      },
+      "pre_close": {
+        "mean": null,
+        "n": 0
+      }
+    }
+  }
+}

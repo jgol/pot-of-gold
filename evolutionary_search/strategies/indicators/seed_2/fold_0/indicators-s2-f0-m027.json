@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "indicators",
+  "seed": 2,
+  "fold": 0,
+  "strategy_id": "indicators-s2-f0-m027",
+  "fold_id": "indicators-s2-f0",
+  "role": "front",
+  "front_rank": 27,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "GT(EphReal(-1.665564), PutCallSkew)",
+    "exit_tree": "CrossBelow(Abs(OvernightGap), UnrealizedProfitPct)",
+    "size_tree": "PutCallSkew10",
+    "delta_tree": "RV5d",
+    "width_tree": "RawSpread_5m",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 2.387872976235669,
+    "template_name": "iron_condor",
+    "fitness": [
+      -1.5184913337363977,
+      10.634056112999337,
+      -0.0,
+      -2.3891085177692
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 5,
+  "recorded": {
+    "train_neg_exp_raw": -2.569052515395668,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": -2.347375999329406,
+    "mean_per_day_excess": 2.2954669561771466,
+    "permutation_p": 0.000999000999000999,
+    "n_champion_trades": 5,
+    "tail_ok": false,
+    "champion_day_cvar": 13.6914908902198,
+    "baseline_day_cvar": 7.828733821379213,
+    "traded_day_edge": -2.238989684557432,
+    "selection_credit": 2.427282556198501,
+    "traded_coverage": 0.02824858757062147,
+    "traded_day_p": 0.7182817182817183,
+    "traded_day_obs": -2.347375999329406,
+    "honesty": "selective_low_coverage",
+    "coverage_matched_obs": 5.6607385290065695,
+    "coverage_matched_p": 0.007992007992007992,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": null,
+        "n": 0
+      },
+      "midday": {
+        "mean": -2.313910989431307,
+        "n": 3
+      },
+      "power_hour": {
+        "mean": -2.397573514176554,
+        "n": 2
+      },
+      "pre_close": {
+        "mean": null,
+        "n": 0
+      }
+    }
+  }
+}

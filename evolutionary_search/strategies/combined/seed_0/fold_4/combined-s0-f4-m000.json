@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "combined",
+  "seed": 0,
+  "fold": 4,
+  "strategy_id": "combined-s0-f4-m000",
+  "fold_id": "combined-s0-f4",
+  "role": "front",
+  "front_rank": 0,
+  "is_champion": true,
+  "genome": {
+    "entry_tree": "GT(EmbProj_EMB_SPX_2(EMB_SPX), ATM_IV)",
+    "exit_tree": "LT(WeightedSum5(VIXMean5d, SessionReturn, EmbCos_EMB_VAR_SPX_RET(EMB_VAR_SPX_RET, PROTO_EMB_VAR_SPX_RET_0), RawSpread, EmbDir_EMB_VAR_ATM_IV(PROTO_EMB_VAR_ATM_IV_0, EmbBankIdx(1)), RawSpread, Lag(EmbCos_EMB_GRID_PUT(EMB_GRID_PUT, PROTO_EMB_GRID_PUT_1), EphInt(5)), Lag(Mul(EmbCos_EMB_SPX(EMB_SPX, PROTO_EMB_SPX_1), EmbProj_EMB_VIX_0(EMB_VIX)), EphInt(30)), EmbProj_EMB_VAR_ATM_IV_0(EMB_VAR_ATM_IV), DeltaSpread5), UnrealizedProfitPct)",
+    "size_tree": "EmbProj_EMB_FLOW_AGG_0(EMB_FLOW_AGG)",
+    "delta_tree": "EmbDir_EMB_SHARED(EMB_SHARED, EmbBankIdx(0))",
+    "width_tree": "EmbDir_EMB_FLOW_AGG(EMB_FLOW_AGG, EmbBankIdx(4))",
+    "shape": "long_strangle",
+    "shape_tree": "Shape_long_strangle",
+    "stop_mult": 2.5134090622796323,
+    "template_name": "iron_condor",
+    "fitness": [
+      -6.944184079170797,
+      15.030691768885218,
+      -2.0159295196735028,
+      -0.0
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 9,
+  "recorded": {
+    "train_neg_exp_raw": -6.944184079170797,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": -2.9447617953913854,
+    "mean_per_day_excess": 3.0510776994015214,
+    "permutation_p": 0.000999000999000999,
+    "n_champion_trades": 9,
+    "tail_ok": false,
+    "champion_day_cvar": 13.10176958437101,
+    "baseline_day_cvar": 9.318704418346517,
+    "traded_day_edge": 1.3310140252127554,
+    "selection_credit": 3.1329854934105095,
+    "traded_coverage": 0.045454545454545456,
+    "traded_day_p": 0.8721278721278721,
+    "traded_day_obs": -3.312857019815308,
+    "honesty": "selective_low_coverage",
+    "coverage_matched_obs": 0.0,
+    "coverage_matched_p": 1.0,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": null,
+        "n": 0
+      },
+      "midday": {
+        "mean": null,
+        "n": 0
+      },
+      "power_hour": {
+        "mean": -2.9447617953913854,
+        "n": 9
+      },
+      "pre_close": {
+        "mean": null,
+        "n": 0
+      }
+    }
+  }
+}

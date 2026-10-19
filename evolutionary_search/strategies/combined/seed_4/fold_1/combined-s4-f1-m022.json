@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "combined",
+  "seed": 4,
+  "fold": 1,
+  "strategy_id": "combined-s4-f1-m022",
+  "fold_id": "combined-s4-f1",
+  "role": "front",
+  "front_rank": 22,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "GT(EmbProj_EMB_VAR_ATM_IV_2(EMB_VAR_ATM_IV), EmbDir_EMB_SPX(EMB_SPX, EmbBankIdx(2)))",
+    "exit_tree": "LT(ProfitGiveback, EmbProj_EMB_VAR_SPX_RET_1(PROTO_EMB_VAR_SPX_RET_1))",
+    "size_tree": "Mul(Mul(EmbProj_EMB_FLOW_AGG_0(EMB_FLOW_AGG), EmbDir_EMB_VIX(PROTO_EMB_VIX_1, EmbBankIdx(2))), EmbDir_EMB_VIX(PROTO_EMB_VIX_1, EmbBankIdx(2)))",
+    "delta_tree": "EmbDir_EMB_VAR_ATM_IV(EMB_VAR_ATM_IV, EmbBankIdx(6))",
+    "width_tree": "EmbProj_EMB_VAR_ATM_IV_2(EMB_VAR_ATM_IV)",
+    "shape": "long_strangle",
+    "shape_tree": "Shape_long_strangle",
+    "stop_mult": 2.12448536331285,
+    "template_name": "iron_condor",
+    "fitness": [
+      -2.4081720702050506,
+      2.947344402287678,
+      -0.6512887354619785,
+      -0.04284842945265439
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 8,
+  "recorded": {
+    "train_neg_exp_raw": -0.5603192225599772,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": 3.4396552600911123,
+    "mean_per_day_excess": 3.915352742119536,
+    "permutation_p": 0.000999000999000999,
+    "n_champion_trades": 8,
+    "tail_ok": true,
+    "champion_day_cvar": 2.391895747052189,
+    "baseline_day_cvar": 11.600573016499688,
+    "traded_day_edge": 10.745308162854913,
+    "selection_credit": 3.6341192836186678,
+    "traded_coverage": 0.03954802259887006,
+    "traded_day_p": 0.33466533466533466,
+    "traded_day_obs": 3.9310345829612716,
+    "honesty": "selective_low_coverage",
+    "coverage_matched_obs": -0.341699392436027,
+    "coverage_matched_p": 1.0,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": -2.391895747052189,
+        "n": 1
+      },
+      "midday": {
+        "mean": -1.4973710651266994,
+        "n": 2
+      },
+      "power_hour": {
+        "mean": 9.138883572815548,
+        "n": 4
+      },
+      "pre_close": {
+        "mean": -3.6516543332277007,
+        "n": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "condition": "indicators",
+  "seed": 0,
+  "fold": 0,
+  "strategy_id": "indicators-s0-f0-m016",
+  "fold_id": "indicators-s0-f0",
+  "role": "front",
+  "front_rank": 16,
+  "is_champion": false,
+  "genome": {
+    "entry_tree": "LT(Delta(DeltaSpread5, EphInt(15)), DeltaSpread5)",
+    "exit_tree": "CrossBelow(IVRVGap5d, Add(UnrealizedProfitPct, VIXSpot))",
+    "size_tree": "VIXChange",
+    "delta_tree": "NetGammaProxy",
+    "width_tree": "DeltaSpread5",
+    "shape": "iron_butterfly",
+    "shape_tree": "Shape_iron_butterfly",
+    "stop_mult": 2.933779847782858,
+    "template_name": "iron_condor",
+    "fitness": [
+      -1.2438659809072052,
+      12.279785640719997,
+      -1.3210610403365395,
+      -0.0
+    ]
+  },
+  "training_outcomes_available": true,
+  "trade_count": 100,
+  "recorded": {
+    "train_neg_exp_raw": -0.0984970424945506,
+    "obj1_is_excess": true,
+    "accepted": false,
+    "champion_oos_mean_pnl": -1.2809673579341512,
+    "mean_per_day_excess": 1.359233535423099,
+    "permutation_p": 0.005994005994005994,
+    "n_champion_trades": 100,
+    "tail_ok": false,
+    "champion_day_cvar": 19.235875848194887,
+    "baseline_day_cvar": 12.991489088802052,
+    "traded_day_edge": 0.20220484047631804,
+    "selection_credit": 2.227005056633185,
+    "traded_coverage": 0.42857142857142855,
+    "traded_day_p": 0.945054945054945,
+    "traded_day_obs": -1.7079564772455347,
+    "honesty": "selective_low_coverage",
+    "coverage_matched_obs": -0.8700978484857641,
+    "coverage_matched_p": 0.8611388611388612,
+    "cms_resolution_ok": true,
+    "cms_stratified": false,
+    "intraday": {
+      "open": {
+        "mean": null,
+        "n": 0
+      },
+      "late_morning": {
+        "mean": -0.49599439534298073,
+        "n": 74
+      },
+      "midday": {
+        "mean": 0.2257143218225785,
+        "n": 8
+      },
+      "power_hour": {
+        "mean": -5.275621355202511,
+        "n": 15
+      },
+      "pre_close": {
+        "mean": -4.688181594859159,
+        "n": 3
+      }
+    }
+  }
+}
