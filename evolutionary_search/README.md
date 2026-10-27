@@ -114,8 +114,17 @@ Use Python **3.12**. From the repository root:
 python3.12 -m venv .venv
 source .venv/bin/activate
 python -m pip install -e '.[search,reports]'
+python -m pip check
 cd evolutionary_search
 ```
+
+Installation and archived-report reproduction were verified from a clean copy
+of the committed files on macOS (Apple silicon), using Python 3.12. All
+dependencies are public PyPI packages; no private package feed is required.
+
+If a configured package mirror returns an HTTP 404, retry the install from the
+repository root with `--no-cache-dir`. On networks with direct PyPI access, add
+`--index-url https://pypi.org/simple` to bypass the mirror.
 
 Run the following commands from `evolutionary_search/`. Installation includes
 the shared transformer package and the evolutionary search module.
