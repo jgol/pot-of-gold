@@ -9,13 +9,6 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 import numpy as np
-from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
-from pymoo.algorithms.moo.nsga3 import (
-    HyperplaneNormalization,
-    associate_to_niches,
-    calc_niche_count,
-    niching,
-)
 from .grammar import (
     GType,
     Grammar,
@@ -577,6 +570,12 @@ def nsga3_select(
     *,
     semantic_niching: bool = False,
 ) -> List[Individual]:
+    # Genome parsing and replay do not need the optional search optimizer.
+    from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
+    from pymoo.algorithms.moo.nsga3 import (
+        HyperplaneNormalization, associate_to_niches, calc_niche_count, niching,
+    )
+
     if not population:
         return []
     if rng is None:

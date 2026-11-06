@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "potofgold"
 version = "0.2.0"
-description = "Representation learning and evolutionary search for 0DTE options research"
+description = "Representation learning, evolutionary search and multi-agent assessment for 0DTE options research"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 license = {text = "MIT"}
@@ -21,6 +21,7 @@ dependencies = [
 [project.optional-dependencies]
 reports = ["matplotlib==3.9.2", "seaborn==0.13.2", "pandas==2.2.2"]
 search = ["pandas==2.2.2", "pyarrow==16.1.0", "pymoo==0.6.1.6"]
+court = ["anthropic==0.125.0", "pandas==2.2.2", "pyarrow==16.1.0"]
 
 [project.scripts]
 potofgold-generate-data = "potofgold.sim_tools.simulation:main"
@@ -36,6 +37,10 @@ potofgold-search = "potofgold.evolutionary_search.search.run:main"
 potofgold-search-replay = "potofgold.evolutionary_search.search.replay:main"
 potofgold-search-evaluate = "potofgold.evolutionary_search.analysis.evaluate:main"
 potofgold-search-report = "potofgold.evolutionary_search.analysis.report:main"
+potofgold-court-evaluate = "potofgold.multi_agent.analysis.evaluate:main"
+potofgold-court-report = "potofgold.multi_agent.analysis.report:main"
+potofgold-court = "potofgold.multi_agent.assessment.run:main"
+potofgold-court-prepare = "potofgold.multi_agent.input_tools.prepare:main"
 
 [project.urls]
 Repository = "https://github.com/jgol/pot-of-gold"
@@ -44,6 +49,7 @@ Repository = "https://github.com/jgol/pot-of-gold"
 "" = "transformer/src"
 "potofgold" = "transformer/src/potofgold"
 "potofgold.evolutionary_search" = "evolutionary_search/src/potofgold/evolutionary_search"
+"potofgold.multi_agent" = "multi-agent/src/potofgold/multi_agent"
 
 [tool.setuptools]
 packages = [
@@ -56,7 +62,17 @@ packages = [
     "potofgold.evolutionary_search.input_tools",
     "potofgold.evolutionary_search.sim_tools",
     "potofgold.evolutionary_search.analysis",
+    "potofgold.multi_agent",
+    "potofgold.multi_agent.analysis",
+    "potofgold.multi_agent.assessment",
+    "potofgold.multi_agent.strategy_profiles",
+    "potofgold.multi_agent.diagnostics",
+    "potofgold.multi_agent.input_tools",
+    "potofgold.multi_agent.reference",
 ]
 
 [tool.setuptools.package-data]
 "potofgold.encoder" = ["variate_names.json"]
+"potofgold.multi_agent.diagnostics" = ["fomc_dates.csv"]
+"potofgold.multi_agent" = ["source_manifest.json"]
+"potofgold.multi_agent.reference" = ["*.json"]

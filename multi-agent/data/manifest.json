@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "study": "H3 score-only allocation, v12 archived decisions",
+  "n_source_strategies": 58,
+  "n_evaluated": 57,
+  "n_days": 882,
+  "start": "2022-09-19",
+  "end": "2026-04-09",
+  "batches": [
+    {
+      "batch": "paid90_batch01_C20",
+      "arm": "C",
+      "matched": 20,
+      "unmatched": 0,
+      "models": {
+        "pros": "gpt-6-astra",
+        "def": "claude-opus-4-8",
+        "analyst": "gpt-5.6-terra",
+        "judges": [
+          "claude-opus-4-8",
+          "gpt-5.6-terra",
+          "gpt-6-astra"
+        ],
+        "one_llm_model": "gpt-6-astra"
+      },
+      "allocation_policy_during_generation": "percentage_v1",
+      "decision_policy": "research_prediction"
+    },
+    {
+      "batch": "paid90_batch02_A20",
+      "arm": "A",
+      "matched": 20,
+      "unmatched": 0,
+      "models": {
+        "pros": "gpt-6-astra",
+        "def": "claude-opus-4-8",
+        "analyst": "gpt-5.6-terra",
+        "judges": [
+          "claude-opus-4-8",
+          "gpt-5.6-terra",
+          "gpt-6-astra"
+        ],
+        "one_llm_model": "gpt-6-astra"
+      },
+      "allocation_policy_during_generation": "percentage_v1",
+      "decision_policy": "research_prediction"
+    },
+    {
+      "batch": "paid90_batch03_mixed18",
+      "arm": "AUC",
+      "matched": 12,
+      "unmatched": 0,
+      "models": {
+        "pros": "gpt-6-astra",
+        "def": "claude-opus-4-8",
+        "analyst": "gpt-5.6-terra",
+        "judges": [
+          "claude-opus-4-8",
+          "gpt-5.6-terra",
+          "gpt-6-astra"
+        ],
+        "one_llm_model": "gpt-6-astra"
+      },
+      "allocation_policy_during_generation": "percentage_v1",
+      "decision_policy": "research_prediction"
+    },
+    {
+      "batch": "paid90_batch03_mixed18",
+      "arm": "A",
+      "matched": 2,
+      "unmatched": 0,
+      "models": {
+        "pros": "gpt-6-astra",
+        "def": "claude-opus-4-8",
+        "analyst": "gpt-5.6-terra",
+        "judges": [
+          "claude-opus-4-8",
+          "gpt-5.6-terra",
+          "gpt-6-astra"
+        ],
+        "one_llm_model": "gpt-6-astra"
+      },
+      "allocation_policy_during_generation": "percentage_v1",
+      "decision_policy": "research_prediction"
+    },
+    {
+      "batch": "paid90_batch03_mixed18",
+      "arm": "C",
+      "matched": 4,
+      "unmatched": 0,
+      "models": {
+        "pros": "gpt-6-astra",
+        "def": "claude-opus-4-8",
+        "analyst": "gpt-5.6-terra",
+        "judges": [
+          "claude-opus-4-8",
+          "gpt-5.6-terra",
+          "gpt-6-astra"
+        ],
+        "one_llm_model": "gpt-6-astra"
+      },
+      "allocation_policy_during_generation": "percentage_v1",
+      "decision_policy": "research_prediction"
+    }
+  ],
+  "source_sha256": {
+    "layer3/results/outputs/paid90_batch01_C20_verdicts_C.json": "3aa5eecb00e7b339167d69c8752280510b237304b82702d2485f4c26df9fb06a",
+    "layer3/results/outputs/paid90_batch01_C20_baseline_C.json": "01d447d7e6e5e246499cea53da7a44fca6527f57fcaa67aaa2bf63bb69db6296",
+    "layer3/results/outputs/paid90_batch01_C20_champions_C.json": "689ba36fb65e87ee0e23d93d9dbc9d06c4e8dcf1e901594bf38e6def89f33f6e",
+    "layer3/results/transcripts/paid90_batch01_C20_audit_C.json": "0c877452dae9eca3612b9bc8683cebabc06c733845d9f8fb22ce722bc5a8fae7",
+    "results/sealed_b304782/cmp5/C_s2/f0_ungated.json": "2acb9d1d475fd5ffd211213c82bd5cabc95da6fe378e91b40e011caccedd005d",
+    "results/sealed_b304782/cmp5/C_s2/f1_ungated.json": "2884f4f7d2570c526e0f0784c3c305278222e5ce99f946f15e66b60ad2032fcb",
+    "results/sealed_b304782/cmp5/C_s2/f2_ungated.json": "c9c9919c9c6cc0e05f570da102fcce111501ef79c1f24590bfbe275113d27c9d",
+    "results/sealed_b304782/cmp5/C_s2/f3_ungated.json": "a988b19cfd23afcba90fb37125af5eb082e86756b146594ca27b25f8fae7a150",
+    "results/sealed_b304782/cmp5/C_s2/f4_ungated.json": "205e15ce637709926b2374bb73d56efa99174ef61ad0a4e9e175bb0a532dc080",
+    "layer3/results/outputs/paid90_batch02_A20_verdicts_A.json": "ecfebaf521f22db6cb971e018af9ca8920c87e6b455b52565d4e98d0397cd490",
+    "layer3/results/outputs/paid90_batch02_A20_baseline_A.json": "14720fa13fa35cc822a8abfcf941aa49cb42a45520703a5e520bd8ebb45ceb7e",
+    "layer3/results/outputs/paid90_batch02_A20_champions_A.json": "1dd38ac6fd283eea5f6a8bbd77a93b70f0ac92ae0587f0c4ac29abada85473b4",
+    "layer3/results/transcripts/paid90_batch02_A20_audit_A.json": "2e0dbd713eeac3c9929eed6ca3a50f4cf0aec43f6c756df1611af574956f88b6",
+    "results/sealed_b304782/condition_a_ms_noratio_partA_s2_DIRTY_routers/f0_ungated.json": "6f2b7564b77ae3fc5304204237234d4feeffd6898e38a0e27f56d1c5f419fc03",
+    "results/sealed_b304782/condition_a_ms_noratio_partA_s2_DIRTY_routers/f1_ungated.json": "57949c75d6742eda92a42cc0da192b7729def4b374bf105cb1238255293a5b67",
+    "results/sealed_b304782/condition_a_ms_noratio_partA_s2_DIRTY_routers/f2_ungated.json": "2edabfdc81432acac2df742a4a3e7c74c98c065042a59454081482682acbcde3",
+    "results/sealed_b304782/condition_a_ms_noratio_partA_s2_DIRTY_routers/f3_ungated.json": "0491cda7b1db2dc9043681179d869a4cfcb4637d42fc05fcc5ab968d95241d7d",
+    "results/sealed_b304782/condition_a_ms_noratio_partA_s2_DIRTY_routers/f4_ungated.json": "5c0f84c4da0cd8163abc55f6d044e8b71a74d321440401447abeac69ac0188ce",
+    "results/sealed_b304782/cmp5/Aaz_s2/f1_ungated.json": "a3f9f89b9973c0f7d1540dbc62eb6dce607c6da3b45f1cda8a0aab28a0f82205",
+    "results/sealed_b304782/cmp5/Aaz_s2/f3_ungated.json": "dcb0a52cbdc27d1c268dad9859300a1b7a5d35d3505f267bb1b23beb9b0ea8de",
+    "layer3/results/outputs/paid90_batch03_mixed18_verdicts_AUC.json": "3aae67535fc812e55f050a30375e43abd1e986fb01f44c8e587be4bf22c926f3",
+    "layer3/results/outputs/paid90_batch03_mixed18_baseline_AUC.json": "0ed11559b56e978e7094b698bb3a45adcfadbc003cf5b1794204fc461fd3c03e",
+    "layer3/results/outputs/paid90_batch03_mixed18_champions_AUC.json": "4928110fe50b39cd5b1b1b2a3e57d22c5d724fb7520be639371665191d582dc7",
+    "layer3/results/transcripts/paid90_batch03_mixed18_audit_AUC.json": "8a077603f16eeffbc19b69177d6c6be207af75bee58810565b48fb2e15821b38",
+    "results/sealed_b304782/cmp5/AUC_s2/f0_ungated.json": "a976289ea37c50028c337c387e335188610761a67e75cd4e9f6b0fec3b85e7f0",
+    "results/sealed_b304782/cmp5/AUC_s2/f1_ungated.json": "af138e66da19660e3949a81f3fc68f8f5763ef6c4c020ad6dea37ee47c42fc16",
+    "results/sealed_b304782/cmp5/AUC_s2/f2_ungated.json": "fd39bfdf4541716e3059481dee09293137018a63dd27cef390c96df3f4968b6e",
+    "results/sealed_b304782/cmp5/AUC_s2/f3_ungated.json": "7edb6feb7dfb212c5b991ffcb94ee351b79c9758e32a36c8168861fd4617f44d",
+    "results/sealed_b304782/cmp5/AUC_s2/f4_ungated.json": "3a265d4bc2df03270f640ce9d0ef846843d69c2847680102de820d5f82e9ce1b",
+    "layer3/results/outputs/paid90_batch03_mixed18_verdicts_A.json": "deca3933be1878333eaceb525c53ef6323cf9456f85f6cd49d2601abfdb339a7",
+    "layer3/results/outputs/paid90_batch03_mixed18_baseline_A.json": "cec835375015d50145e70018f1bed55b8dfd51f4e5b96009fc0e93d14785c489",
+    "layer3/results/outputs/paid90_batch03_mixed18_champions_A.json": "113082a416cfe9ae9c4cf2b93046a308acf3917d991eb959ed4e0eaf4e9162f4",
+    "layer3/results/transcripts/paid90_batch03_mixed18_audit_A.json": "324f807254ed41b3efaedc94b7ccb4223b7aace67a3f21639acb7a6621bafb08",
+    "layer3/results/outputs/paid90_batch03_mixed18_verdicts_C.json": "222ddbacbd991e3685ac975011c0ddefb2b1ff6e24f3dbde677afc023f0fd639",
+    "layer3/results/outputs/paid90_batch03_mixed18_baseline_C.json": "9879e4e9104abed8113e4aaa92e6d872c5a073087dec36eea749558071d9fc2d",
+    "layer3/results/outputs/paid90_batch03_mixed18_champions_C.json": "50e198943b16458a83f3095afb32272528f0c11e2ed02a455c08f8e04b451cbf",
+    "layer3/results/transcripts/paid90_batch03_mixed18_audit_C.json": "c1eed7a4ec73a7b99f2a9c8c8ed2a98bef90bceef086f572068d8263aa0454e9",
+    "layer3/results/compare_allocation_policies.py": "e5458a1349189baf2ec228971c6fdcb525ecf0a4d2ba99fa70658ec352e5b1b0",
+    "layer3/validation/selector_bakeoff.py": "ebf0243ba6e90b60d5b8bcde4d0aaba3435cf8805aa290ea36971294723b11f4",
+    "scripts/ensemble_from_specialists.py": "fc65343e6bbc686a0d56df3293dabc56d2aeb11dd2735cf5f8f53303127c405a",
+    "layer3/results/multi-agent-hypothesis-report.html": "f850231af358e73651a9a8172913cda20757679bbb366176a73a2d5f6362b7b5"
+  },
+  "archive_sha256": {
+    "data/cohort.json": "cc5bc28443ab2c7b2d45167b3b32cf7870de7ac43f7477c8be9c26c109a6f50a",
+    "results/court.json": "799c59c658b94511826ca13a33e75219d864a5c1d439367eb17dfbe36f32f200",
+    "results/single_llm.json": "1d7b85f64ba9ea3d092880907ce801fa51c0c34438d2e494965f442ba37c5f15",
+    "results/transcripts.json.gz": "4abe73fcfab3b7d4cb5e656e223a983d15390715baea9c28378af8a9ef5e229b",
+    "results/outcomes.npz": "7a81abc4de2d1edcda388a72fef11b9d7334015d3fb2b852767ee6c775640405"
+  },
+  "export": "Joined original source champions to original ledgers by full genome excluding fitness, plus fold; enforced code SHA b304782, seed 2 and condition. Actual held-out traded P&L is zero-filled onto each parent fold calendar. Training P&L uses the original loader finite-value filter. Decisions and audit records are preserved; machine-specific batch headers are replaced by the portable metadata here.",
+  "limitations": [
+    "Original report flags unresolved provenance for the arm-A ledger source (21 of 57 evaluated strategies).",
+    "Strategy identity separates development and evaluation; these are not new forward-market dates.",
+    "Recorded single-LLM model and provider metadata identify gpt-6-astra, not Claude."
+  ]
+}

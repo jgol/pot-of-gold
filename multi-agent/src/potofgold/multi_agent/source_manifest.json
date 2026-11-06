@@ -1,0 +1,518 @@
+{
+  "adaptations": [
+    "Court code is packaged as potofgold.multi_agent. Strategy parsing, readouts, preparation and replay use potofgold.evolutionary_search. Original source identities are retained below.",
+    "The package includes the original development/test membership and calendar. New-run fingerprints cover court code, prompts, shared GP code and input files.",
+    "New assessments use prosecution, defense and three judges. The optional analyst and its additional judging pass are omitted. The extra mechanism guide is also omitted. Historical prompt identities, decisions and transcripts are retained.",
+    "Prompts are defined in assessment/prompts.py. Court and single-LLM execution share strategy profiles, validated measurements, reference findings and diagnostic tools.",
+    "Preparation accepts caller-supplied market inputs, fits lean readouts on training rows and supports optional ridge target residualization. CAT_RUNNER_VIX_STATE supplies the recorded 10:30 volatility inputs.",
+    "POTOFGOLD_COURT_WORKSPACE and POTOFGOLD_COURT_AUDIT_DIR configure runtime locations. The CLI accepts a YAML argument preset and supplies preparation, assessment, outcome evaluation and report commands.",
+    "The release contains the H3 assessment paths and diagnostic dependencies. Retired campaigns, calibration workflows, alternate allocation modes, duplicated GP replay code and optional news extraction are omitted. Historical profile fields remain readable.",
+    "New assessments obtain reference rules from evidence_store.json. Reference construction remains available for new development populations; separate per-condition calibration files are omitted.",
+    "Four preparation dependencies were untracked in the research checkout. Their source_origin records identify working-tree snapshots rather than frozen-commit files.",
+    "Comments and docstrings describe the current implementation. Two unused helpers were removed: the legacy context-only citation validator and terminal-threshold conversion utility. Executable prompts and archived research records are unchanged by these edits."
+  ],
+  "development_files_sha256": {
+    "data/evidence_store.json": "5a170983c445346a6715175418deec47dea561cc42ffbe5bd09b56af2946eebd"
+  },
+  "historical_inputs_unavailable": [
+    "Complete v12 evaluation training profiles and per-strategy saved measurement files",
+    "Original pinned evaluation peer-reference files",
+    "Licensed market input files for fresh diagnostic replay"
+  ],
+  "namespace_mapping": {
+    "layer2": "potofgold.evolutionary_search.search (with court-specific adapters identified below)",
+    "layer3": "potofgold.multi_agent",
+    "scripts": "potofgold.multi_agent.input_tools"
+  },
+  "original_commit": "a8e83d834f42110a6f107cd54e207245a39c5546",
+  "original_prompt_constants_sha256": {
+    "allocation_policy.PERCENTAGE_GUIDE": "21f807d9a19c04373ed0e7677c28f95bc77ccedee181d0c922d057f84545ef30",
+    "allocation_reasoning.INVESTIGATION_GUIDE": "120f8b4dc0addfd59023cd7ea526eb8a9ee182b2dea5bcd94193d48c5a93bb81",
+    "court_claims.DEFENSE_CLAIM_GUIDE": "e08c0ca932b0b3f1f53769827c5e56b7e86d7e2a3f0fe089221eb4fedf20fb8e",
+    "generalization_court.ALLOCATION_ANALYST_SYSTEM": "80e822157b5dc20a2f270d0cd2dda558691e17e84b21e19f4d2461e2dcf19139",
+    "generalization_court.ANALYST_SYSTEM": "0b81e555c11f7fc679f5c97a3fa8173d4e9266937c7ca62094d92539106f7041",
+    "generalization_court.DEFENDER_SYSTEM": "0831a27030730884cdce3c2accab383f9a3004255fbd94e3ff3414b2d01f7611",
+    "generalization_court.EXPLORATORY_RISK_NOTE": "f3b113327e6b2954f3842f85b759bd1ed51e111def6d3ead820fc4e1af442e87",
+    "generalization_court.JUDGE_SYSTEM": "306b82716e164a1c6e71ec7659ea302653974e0cbc4d4b5111c21deab70ea884",
+    "generalization_court.PROSECUTOR_SYSTEM": "53fe660dba6bbdcce8dacab2c3660c2556970c9060b1e4ead358311edd2012bc",
+    "generalization_court._ALLOCATION_GUIDE": "07b389d4e420f729c3a5ec5ca8b7bcb6a71fa3b680cb58299b451243922bc7fd",
+    "generalization_court._COST_MEASUREMENT_GUIDE": "fa0fe400f2836954f04c673f6b3319e521a65d4dd67fc21e2e3cccce1ba644d4",
+    "generalization_court._MECHANISM_GUIDE": "3ad1decb8f46446f393f26ae659f59e01c90725f11774c1590ec01c7bc854d21",
+    "generalization_court._REASONING_GUIDE": "d29c774f01beaacded53cda676c9ac471a0cc56ef4dfacacccf135fa3f249e46",
+    "generalization_court._TRAINING_ECONOMICS_GUIDE": "b23b9ad64b79c79ba6c6690db82ae80ad5ea6a17f8f12dd0578079a8605849f8"
+  },
+  "original_single_llm_prompt_ast_sha256": {
+    "graduated_v1": "82f43fd22ad7c1788f8f63eda04f7ab494ba479b142cda0cb18e57314cb09348",
+    "percentage_v1": "5bd6850c2bb27c62533aae1322e3b82e15180ba658340830d9376cf21698be72"
+  },
+  "original_sources": {
+    "layer2/calendar_features.py": {
+      "path": "diagnostics/calendar_features.py",
+      "source_sha256": "d626618f8c7eb240c7f03309ef73bb389557d59852d5df6ff52ca1c4b31b2bbc"
+    },
+    "layer2/capture_fitness.py": {
+      "extraction": "Uses the shared evolutionary-search implementation; original source hash retained for provenance.",
+      "package": "potofgold.evolutionary_search",
+      "path": "search/fitness.py",
+      "source_sha256": "a3d34eae42956a3cbb7996ea6375d5f481eb611011b13eedf0c382eb9296a1fa"
+    },
+    "layer2/evaluator.py": {
+      "extraction": "Uses the shared evolutionary-search implementation; original source hash retained for provenance.",
+      "package": "potofgold.evolutionary_search",
+      "path": "search/records.py",
+      "source_sha256": "0d8590f979a9e276f9e9165aa7e15ca57d528aa823aa4f8db04ab6127074844f"
+    },
+    "layer2/evaluator_vectorized.py": {
+      "extraction": "Uses the shared evolutionary-search implementation; original source hash retained for provenance.",
+      "package": "potofgold.evolutionary_search",
+      "path": "search/simulator.py",
+      "source_sha256": "78a48de9d999feb526892c26a66e18cab0e3a08eb6d15c6a9d336cd0e60786a2"
+    },
+    "layer2/gamma_proxy.py": {
+      "extraction": "Requires NetGammaProxy from the shared market-input preparation; no separate artifact merger is shipped.",
+      "path": "input_tools/scalar_data.py",
+      "source_sha256": "adad0f755f8ae749ef64b4e21fb14548cda86dbd3db90d94a8260a0a32fcbd6c"
+    },
+    "layer2/gp_engine.py": {
+      "extraction": "Uses the shared evolutionary-search implementation; original source hash retained for provenance.",
+      "package": "potofgold.evolutionary_search",
+      "path": "search/genetics.py",
+      "source_sha256": "104b381e3aef4ae9fc8ff5a0bec83c118496c12c07bba46c39fc31e87d91437a"
+    },
+    "layer2/gp_validation.py": {
+      "extraction": "Uses the shared evolutionary-search implementation; original source hash retained for provenance.",
+      "package": "potofgold.evolutionary_search",
+      "path": "search/validation.py",
+      "source_sha256": "0818ce4d37f81e37b5d1fae989ef07489ad8a21ed32770d8030f6b7daee34aed"
+    },
+    "layer2/grammar.py": {
+      "extraction": "Uses the shared evolutionary-search implementation; original source hash retained for provenance.",
+      "package": "potofgold.evolutionary_search",
+      "path": "search/grammar.py",
+      "source_sha256": "53524c439d01c0f2b9cc708767ffe83b24a01cbc80e4314b52bfb3727046e8d0"
+    },
+    "layer2/inference/pca_bases.py": {
+      "extraction": "Uses the shared evolutionary-search implementation; original source hash retained for provenance.",
+      "package": "potofgold.evolutionary_search",
+      "path": "search/readouts.py",
+      "source_sha256": "fcbf0b44b847a5e2b3f03ba1a1fa591c2a405c68931cdfee9a4f9d3ff63bba32"
+    },
+    "layer2/io.py": {
+      "extraction": "Uses the shared evolutionary-search implementation; original source hash retained for provenance.",
+      "package": "potofgold.evolutionary_search",
+      "path": "search/data.py",
+      "source_sha256": "77089c20bf3e6643424485ed6f20f9aef220c4c827f5fbb1591093e708f23723"
+    },
+    "layer2/parameterized_structure.py": {
+      "extraction": "Uses the shared evolutionary-search implementation; original source hash retained for provenance.",
+      "package": "potofgold.evolutionary_search",
+      "path": "search/structure.py",
+      "source_sha256": "d486da276d74e0a2ff5d9353bb16acfd9680dca27168f6bf69951cc48d372343"
+    },
+    "layer2/target_residualize.py": {
+      "extraction": "Uses the shared evolutionary-search implementation; original source hash retained for provenance.",
+      "package": "potofgold.evolutionary_search",
+      "path": "search/readouts.py",
+      "source_sha256": "2e7994d0be2c4953146c6ac0d4f71252d192e8efff150542364d2a17e7e2d9c9"
+    },
+    "layer2/templates.py": {
+      "extraction": "Uses the shared evolutionary-search implementation; original source hash retained for provenance.",
+      "package": "potofgold.evolutionary_search",
+      "path": "search/templates.py",
+      "source_sha256": "7505639e08b06a6669aa080ee6f8c7bbeb20b564f30df85498aba3c76afa4172"
+    },
+    "layer2/terminal_meanings.py": {
+      "path": "strategy_profiles/terminal_meanings.py",
+      "source_sha256": "71324e59c17b89baf073e8ae6e3ba76110dbbcfbab75480f4daf28a68576a45f"
+    },
+    "layer2/terminal_stats.py": {
+      "extraction": "Uses the shared evolutionary-search implementation; original source hash retained for provenance.",
+      "package": "potofgold.evolutionary_search",
+      "path": "search/normalization.py",
+      "source_sha256": "4999510c6cc0794c3554ab35f6e56276b32d2d197d6d7c4c13f6989032002a86"
+    },
+    "layer2/terminal_stats_v4_clean.py": {
+      "extraction": "Not shipped: alternate clean-data normalization is outside the released experiment and is explicitly rejected.",
+      "source_sha256": "a390bfd5ab7342ef317bca064a29fc759374943e59b05808bf871ccfaaa77195"
+    },
+    "layer2/wing_iv_fix.py": {
+      "extraction": "Uses the shared evolutionary-search implementation; original source hash retained for provenance.",
+      "package": "potofgold.evolutionary_search",
+      "path": "search/wing_iv.py",
+      "source_sha256": "c8213f622ebac6938184ed416cde47b34bc435790588e4a916432f76447df46e"
+    },
+    "layer3/agents.py": {
+      "path": "assessment/agents.py",
+      "source_sha256": "025ef86e48c656c4c0c16b2ce64af2f34f52289dbb3d51a97a7810a5a5c2f3c2"
+    },
+    "layer3/codegen.py": {
+      "extraction": "Uses the shared evolutionary-search implementation; original source hash retained for provenance.",
+      "package": "potofgold.evolutionary_search",
+      "path": "search/structure.py",
+      "source_sha256": "ad40efe1231f861b0eb9daad45f8603a4f5e425fbe9d074c6bde721561897945"
+    },
+    "layer3/providers.py": {
+      "path": "assessment/providers.py",
+      "source_sha256": "4b67dcdeae47ace5f3b1f391d7186daab9e234df4e17781624d9a9a8d065adc4"
+    },
+    "layer3/validation/allocation_policy.py": {
+      "path": "assessment/allocation_policy.py",
+      "shared_prompts": "assessment/prompts.py",
+      "source_sha256": "f4457fa7252cecd88a624646c4cbc1131ff729165c04184ba13f46236c0c4d9c"
+    },
+    "layer3/validation/allocation_reasoning.py": {
+      "path": "assessment/allocation_reasoning.py",
+      "shared_prompts": "assessment/prompts.py",
+      "source_sha256": "d599cb1cb4de60f240c97e08b799ded2124541f685b73b2c2e4b0441dab2ee65"
+    },
+    "layer3/validation/basis_refit.py": {
+      "path": "diagnostics/basis_refit.py",
+      "source_sha256": "cfa874478e4789e525e60fdf125f5a091f89ea9326c95e71c5c6bf0bc518f899"
+    },
+    "layer3/validation/boundary_status.py": {
+      "path": "diagnostics/boundary_status.py",
+      "source_sha256": "0ab1240636cc76569505b3a1acd0dbd0fc46d22ecfbf95e2cf4d311ae08c675c"
+    },
+    "layer3/validation/catalogue_calibration.py": {
+      "adaptation": "Retained reference-book threshold fitting and archived threshold provenance; removed the independent calibration store and fitting workflow.",
+      "retained_paths": [
+        "strategy_profiles/diagnostic_evidence.py",
+        "strategy_profiles/tool_evidence.py"
+      ],
+      "source_sha256": "907ea1cb85593c2a48298d16ab262c9ce737b553e5b3af28f27ae4e730848916"
+    },
+    "layer3/validation/catalogue_runner.py": {
+      "path": "diagnostics/catalogue_runner.py",
+      "source_sha256": "93a991f9a7820e444940329c5a9d936f7dbffd3ac0d2cbe45fb19ed1e457eb10"
+    },
+    "layer3/validation/champion_case_file.py": {
+      "extraction": "Only genome rule rendering and embedding markers retained; obsolete outcome-based case builder omitted.",
+      "path": "strategy_profiles/generalization_case_file.py",
+      "source_sha256": "9346018f517f520adbf4eaea6af990176201f033d4931258ef531e12ff2a1ab6"
+    },
+    "layer3/validation/conditional_intervention.py": {
+      "path": "diagnostics/conditional_intervention.py",
+      "source_sha256": "e7c72691b879717016ea12e10adfe8d1e314449e3501e10e6d0612a4ecb7aec0"
+    },
+    "layer3/validation/court_citations.py": {
+      "path": "assessment/court_citations.py",
+      "source_sha256": "98d9dfb1985baacce2b4fbc4f91e87c65b7788529c59cff111112a4a71f94800"
+    },
+    "layer3/validation/court_claims.py": {
+      "path": "assessment/court_claims.py",
+      "shared_prompts": "assessment/prompts.py",
+      "source_sha256": "c7f8ba3a8bb8cb36103cbcf6287fd294f6f71bd8ecd6225785a1f02411403bbd"
+    },
+    "layer3/validation/court_compute.py": {
+      "extraction": "Retained descriptive peer comparisons; obsolete callable bootstrap/peer tool definitions omitted.",
+      "path": "assessment/court_compute.py",
+      "source_sha256": "32489126ff82fea90661db9c58fc06a6c83192ffb924d8c3d24944f2ceb806bc"
+    },
+    "layer3/validation/court_readiness.py": {
+      "path": "assessment/court_readiness.py",
+      "source_sha256": "ddd16fb9e702e657089cf4b8e81a696f5be22f418c0bce9171f032ca6966e6b9"
+    },
+    "layer3/validation/court_statistics.py": {
+      "path": "analysis/court_statistics.py",
+      "source_sha256": "121913ce60792e233b3e1a0caa591ee79d752d662acbfccbbf3f7ae5fc2fa8d6"
+    },
+    "layer3/validation/decision_tracer.py": {
+      "path": "diagnostics/decision_tracer.py",
+      "source_sha256": "8773f5b08fc526dbb5a5597de7546c57d8fc52b8eb0b7f4b7adf4850b5a175bd"
+    },
+    "layer3/validation/development_comparison.py": {
+      "path": "assessment/single_llm.py",
+      "shared_prompts": "assessment/prompts.py",
+      "source_sha256": "7a4e7097d134da65a7061c126bb240bdef7606438476814ca382286a5149905c"
+    },
+    "layer3/validation/development_evidence_loader.py": {
+      "adaptation": "Removed with the unused development-pilot workflow.",
+      "source_sha256": "4af4de5e07315548b2e8e1c00cc25c6a9e47394fc8e32d232be3ee3e2c90bb78"
+    },
+    "layer3/validation/development_matched_controls.py": {
+      "adaptation": "Removed the unused development-regime-control-v1 saved-record loader; this format is absent from archived H3 measurements. Active diagnostic matched controls remain in diagnostics/matched_controls.py.",
+      "source_sha256": "7aaacde999cac20e4f1786ad103994d6d4a7d35c55ff87322702eaa01e406f83"
+    },
+    "layer3/validation/diagnostic_evidence.py": {
+      "path": "strategy_profiles/diagnostic_evidence.py",
+      "source_sha256": "245271e896faba306ec524223c21feef24d7fb003892a007a05c4468e42dba35"
+    },
+    "layer3/validation/economic_comparisons.py": {
+      "path": "strategy_profiles/economic_comparisons.py",
+      "source_sha256": "f3932a8dae13574a3c02f395c67ccefa6250742dbe32cbd4eaf34db699d6bf88"
+    },
+    "layer3/validation/economic_fragility.py": {
+      "path": "diagnostics/economic_fragility.py",
+      "source_sha256": "e04afcfd99ece5a9f9e587551871a2680055d30243cdf490788383d022088b10"
+    },
+    "layer3/validation/economic_predictors.py": {
+      "path": "strategy_profiles/economic_predictors.py",
+      "source_sha256": "6d2e1368964d317ad3f725f5c5724cb4df203aa79bbb10b4725fbb604101a2a7"
+    },
+    "layer3/validation/entry_boundary_economics.py": {
+      "path": "diagnostics/entry_boundary_economics.py",
+      "source_sha256": "92b359d2fc5405123805574c5994bde8fcb6d6ff6211011daacc49c67036a95d"
+    },
+    "layer3/validation/entry_boundary_stability.py": {
+      "path": "diagnostics/entry_boundary_stability.py",
+      "source_sha256": "550105a60aba686eb8a6ae36eb90b811986438250f3cb4d8bf1c6843f2ab8c3f"
+    },
+    "layer3/validation/evidence_cards.py": {
+      "path": "strategy_profiles/evidence_cards.py",
+      "shared_prompts": "assessment/prompts.py",
+      "source_sha256": "517f0240fe75fbb4668e22ead00b30033fd47597cdf8b497fb2e87fc0a509fde"
+    },
+    "layer3/validation/evidence_summaries.py": {
+      "path": "strategy_profiles/evidence_summaries.py",
+      "source_sha256": "d3dd2ed3602a4717b17fbe585ad503ad9d091925ff3796a716629b7224e10ff4"
+    },
+    "layer3/validation/fire_temporal.py": {
+      "path": "diagnostics/fire_temporal.py",
+      "source_sha256": "3543ed68b00f524b190707e4e3191e4131d791f1f6c7bbaf736a3c0f35b913df"
+    },
+    "layer3/validation/generalization_case_file.py": {
+      "path": "strategy_profiles/generalization_case_file.py",
+      "source_sha256": "1d6a1c75c4f5cf8f1839cb087837e99609739e4df757bc906ee1dc34801c6fa7"
+    },
+    "layer3/validation/generalization_court.py": {
+      "path": "assessment/court.py",
+      "shared_prompts": "assessment/prompts.py",
+      "source_sha256": "7d076717c6811f4382e7f14364b88f0c708021419ddb7561cd2f6f49850e7aca"
+    },
+    "layer3/validation/intraday_stability.py": {
+      "path": "diagnostics/intraday_stability.py",
+      "source_origin": "original_research_working_tree; not present in the frozen commit",
+      "source_sha256": "f82f4ce57cc3ecb10cff791944ec0211e1d3b6aed5e2c68bc9522dacd56c9113"
+    },
+    "layer3/validation/matched_controls.py": {
+      "path": "diagnostics/matched_controls.py",
+      "source_sha256": "823e291d9af0a02f7dd23bbd952597b8d4323bfb5543b8e5159bcfb5f986382a"
+    },
+    "layer3/validation/news_lift.py": {
+      "extraction": "Optional GDELT news-panel extraction removed from public preparation. Historical case-file ingestion is retained.",
+      "source_sha256": "ecc8d1b8c4b989cd939e786c0c533b5183e0dcaeb7e1e82a05c576a27116aac5"
+    },
+    "layer3/validation/panel_preflight.py": {
+      "path": "assessment/panel_preflight.py",
+      "source_sha256": "53ce6c1e88bd5d0133729d5382d5721325a913f2d2b1190bb9545b7f0708796f"
+    },
+    "layer3/validation/peer_reference.py": {
+      "path": "strategy_profiles/peer_reference.py",
+      "source_sha256": "e6121fdb6421ae05d0dc97428fdade4760c9a4ca530af84edfd834908b94fc73"
+    },
+    "layer3/validation/perturbation_prober.py": {
+      "path": "diagnostics/perturbation_prober.py",
+      "source_sha256": "8c4e103d5520a7c5e2968593b1ee67b74995bd8e7183b46267a2a1b53962d1bd"
+    },
+    "layer3/validation/reasoning_claims.py": {
+      "path": "assessment/reasoning_claims.py",
+      "source_sha256": "37470ce1ea7c204ec67d8d62e460566130b714e67fd041144077ef9fad55d840"
+    },
+    "layer3/validation/reasoning_diagnostics.py": {
+      "path": "assessment/reasoning_diagnostics.py",
+      "source_sha256": "94688036967f49cd6e4052adc71dab841448a79e9287268f6e39b9cb32ae6597"
+    },
+    "layer3/validation/regime_features.py": {
+      "path": "diagnostics/regime_features.py",
+      "source_sha256": "06233f78efeaa55cd2a89a1aafa75976613156f785ce2bb423fcb04a1cf56022"
+    },
+    "layer3/validation/run_readiness.py": {
+      "path": "assessment/run_readiness.py",
+      "source_sha256": "e305dc42233acc6c3c131c6569f7dd8a1ac927c1df3adff176d95860f3d62eb6"
+    },
+    "layer3/validation/seed_firewall.py": {
+      "extraction": "Retained original split identity, membership loading and role lookup; unused historical cohort-building and P&L comparison routines omitted.",
+      "path": "input_tools/seed_firewall.py",
+      "source_sha256": "efc8a9f19f941faa83d89709582c3d7ac3b1101d02b34f6a5c044d1bd3d7cff1"
+    },
+    "layer3/validation/selector_bakeoff.py": {
+      "extraction": "Retained fixed-calendar portfolio statistics only.",
+      "path": "analysis/court_statistics.py",
+      "source_sha256": "ebf0243ba6e90b60d5b8bcde4d0aaba3435cf8805aa290ea36971294723b11f4"
+    },
+    "layer3/validation/terminal_registry.py": {
+      "path": "strategy_profiles/terminal_registry.py",
+      "source_sha256": "fe7c14043f8509defba026d41cbc9ba62d9642eed16f40b75da22cf2f8b745ec"
+    },
+    "layer3/validation/tool_evidence.py": {
+      "path": "strategy_profiles/tool_evidence.py",
+      "source_sha256": "4af12ed38da10a96be126421b809f47481bf6ba1c6cd0033f6bb0510d3b6261a"
+    },
+    "layer3/validation/training_case_exhibits.py": {
+      "path": "strategy_profiles/training_case_exhibits.py",
+      "source_sha256": "01477f2856b384f941b65f060b1148ffb635a0b148b1b1ada5839345c04e16be"
+    },
+    "layer3/validation/training_economics.py": {
+      "path": "strategy_profiles/training_economics.py",
+      "source_sha256": "90ac04bb03ce19dba137c47e8c426924782163680938717309a6991fc3bbfbe9"
+    },
+    "layer3/validation/training_recurrence.py": {
+      "path": "diagnostics/training_recurrence.py",
+      "source_sha256": "712b816ea1c8e437e758b559f1043c3c32516232103acf76a864d2ff26abd82b"
+    },
+    "layer3/validation/transaction_cost_stress.py": {
+      "path": "diagnostics/transaction_cost_stress.py",
+      "source_sha256": "a26746086dd64d5c67aa77b1b3c0cdcd86b79bbe7da95644511e9ae157562a7b"
+    },
+    "layer3/validation/vulnerability_catalogue.py": {
+      "path": "diagnostics/vulnerability_catalogue.py",
+      "source_sha256": "89edb645a7daf8790459fbf81fe19f1f07233f7a2c44acd153b6f4d868a390cf"
+    },
+    "scripts/dev_evidence_factory.py": {
+      "path": "input_tools/prepare.py",
+      "source_sha256": "9ee8c1c163970c32f1bbc8ededd2478833b22b4161b9f1499de0c7d7f140bf27"
+    },
+    "scripts/encoder_effectiveness_eval.py": {
+      "extraction": "Only BASELINE_EXCLUDE, _scalar_baseline retained; unrelated standalone workflow omitted.",
+      "path": "input_tools/embedding_data.py",
+      "source_sha256": "f3fd93aeb8719a8f93a09468cb2c8d607bb91d68ad543fc8e1d35e617b4f2ce4"
+    },
+    "scripts/ensemble_from_specialists.py": {
+      "extraction": "Retained fixed-calendar portfolio statistics only.",
+      "path": "analysis/court_statistics.py",
+      "source_sha256": "fc65343e6bbc686a0d56df3293dabc56d2aeb11dd2735cf5f8f53303127c405a"
+    },
+    "scripts/g5_trace_cohort.py": {
+      "extraction": "Retained recorded replay-flag merge here and exhibit field guards in strategy_profiles/training_case_exhibits.py.",
+      "path": "diagnostics/catalogue_runner.py",
+      "source_sha256": "cb9480abbc87a046171dbfc24e3749999de6181af140841fa30a201d90dd3ed5"
+    },
+    "scripts/g6_prober_cohort.py": {
+      "extraction": "Retained the exhibit field allowlist only.",
+      "path": "strategy_profiles/training_case_exhibits.py",
+      "source_origin": "original_research_working_tree; not present in the frozen commit",
+      "source_sha256": "a80e6bda63409f64c28c86f3c5ebf0f3e99350dd1a3ea24dc4dafc0074a4feaa"
+    },
+    "scripts/g7_regime_cohort.py": {
+      "extraction": "Retained the exhibit field allowlist only.",
+      "path": "strategy_profiles/training_case_exhibits.py",
+      "source_origin": "original_research_working_tree; not present in the frozen commit",
+      "source_sha256": "671da9a696062e16e62c41839ef81a76f613fc7047e60b309fb9a736a844ef03"
+    },
+    "scripts/g_intraday_cohort.py": {
+      "extraction": "Retained the exhibit field allowlist only.",
+      "path": "strategy_profiles/training_case_exhibits.py",
+      "source_origin": "original_research_working_tree; not present in the frozen commit",
+      "source_sha256": "470933d6aa7d13dd928bc9ba121ead1ee7204c6eebe70d9f69921b2d4b316406"
+    },
+    "scripts/run_condition_a.py": {
+      "extraction": "Only original H3 replay inputs, checks and preparation helpers retained. GP-search launchers and synthetic benchmark branches omitted.",
+      "path": "input_tools/scalar_data.py",
+      "source_sha256": "6a040dbbeab3ab66de43fc28b0fe12661f36a17b8657e998664ea5d4aff8192c"
+    },
+    "scripts/run_condition_c.py": {
+      "extraction": "Only original H3 replay inputs, checks and preparation helpers retained. GP-search launchers and synthetic benchmark branches omitted.",
+      "path": "input_tools/embedding_data.py",
+      "source_sha256": "282e37d00f40319755cb2a3f2f3c0f9cb3f44e4a1accd9f1d9fa6a8316fedb89"
+    },
+    "scripts/run_generalization_panel.py": {
+      "path": "assessment/run.py",
+      "source_sha256": "dc98cec071c2b44385f0c291b6ffb6acacd2a8d3e3365a787fb760d443b15178"
+    }
+  },
+  "prompt_constants_sha256": {
+    "assessment.prompts.DEFENDER_SYSTEM": "e21038d9ce9f4044e5eb2758d737b9fd7e34c6255284fa18e936f2a2c56312a9",
+    "assessment.prompts.DEFENSE_CLAIM_GUIDE": "e08c0ca932b0b3f1f53769827c5e56b7e86d7e2a3f0fe089221eb4fedf20fb8e",
+    "assessment.prompts.EXPLORATORY_RISK_NOTE": "f3b113327e6b2954f3842f85b759bd1ed51e111def6d3ead820fc4e1af442e87",
+    "assessment.prompts.INVESTIGATION_GUIDE": "120f8b4dc0addfd59023cd7ea526eb8a9ee182b2dea5bcd94193d48c5a93bb81",
+    "assessment.prompts.JUDGE_SYSTEM": "ba0c95324ec5b60226de3394072662ec1accb84ad6f5588f4ace41346a143c65",
+    "assessment.prompts.PERCENTAGE_GUIDE": "c94b6a9b51095531cdd067701a6f845c8fd780b54c8ee8513aeb47a74ff009c7",
+    "assessment.prompts.PROSECUTOR_SYSTEM": "25f3c8c55f5ff60a0ee9b68637d56a8b57fe7c7e45f3d3b42018d6553a733fea",
+    "assessment.prompts._COST_MEASUREMENT_GUIDE": "fa0fe400f2836954f04c673f6b3319e521a65d4dd67fc21e2e3cccce1ba644d4",
+    "assessment.prompts._REASONING_GUIDE": "d29c774f01beaacded53cda676c9ac471a0cc56ef4dfacacccf135fa3f249e46",
+    "assessment.prompts._TRAINING_ECONOMICS_GUIDE": "b23b9ad64b79c79ba6c6690db82ae80ad5ea6a17f8f12dd0578079a8605849f8"
+  },
+  "protocol": "training-informed-research-v12-no-analyst",
+  "runtime_sha256": {
+    "__init__.py": "1f113ce829922ad5c9adccd3324ac3a021da1499c1398408f5089379090d6191",
+    "analysis/__init__.py": "1a4f0bddb0c06861598c9148db2bb3e122f7d782c30370b29923d6d7db09eaf8",
+    "analysis/allocation.py": "8e58621c1e3287f0aa9a84da6b6b669f5ab231e686e268c58a9dc45ed48ba7bd",
+    "analysis/archive.py": "ee78e56a88186b644d89f43b95487c36fd2ed9eda26307645d6740880c45cd27",
+    "analysis/court_statistics.py": "f52f0d8e53f8d77bd10909d1197d300d4a0339375eac57268ef6c089657a88bf",
+    "analysis/evaluate.py": "06b4a019167baf3d0af7738aa3ec9c84933a7669c479f3d0d54376bc25f2bfed",
+    "analysis/report.py": "fcbead84dc9ce093e89ac14b6b5e5816fbcbd894852265e90d78c4f7b2c49842",
+    "assessment/__init__.py": "14653636e462334bd714172b29006ecdc75d505019adba6d1bce7feb6be8e3f8",
+    "assessment/agents.py": "a7a10b08dddef44622843fe890833572574306329dda0eeb71cabdda27d66c4a",
+    "assessment/allocation_policy.py": "7d9627fe20037406a895f535771ec0119f7eb1321e22d12fc1497f68ded67785",
+    "assessment/allocation_reasoning.py": "965e62416ad92501bafeac3126002d9069b6efdf009c97cec51aae3136b83bdb",
+    "assessment/court.py": "18a07895480012cbc71cb0e67958b9d478820391c5666110307f5881024465d2",
+    "assessment/court_citations.py": "cb05d603cef36074236f8dbf9f3985bacb5b81f5c626105213842810a2757572",
+    "assessment/court_claims.py": "6ff5e56f8fa8faab86042fa52abcef358e5c71349fd52536e137f7cf121cc746",
+    "assessment/court_compute.py": "7a5970f6411e0850431e37d6137c934da0f68f3bca19b1a630895de4ee353aa4",
+    "assessment/court_readiness.py": "9fd18d433606ba6c88f378920cb301b7f71b445905e9eae3e2fee9e88ea0360a",
+    "assessment/panel_preflight.py": "bf6c74d3924c16eeb441f636abee054399a83d8995d3a4dca15f7adcf25066f9",
+    "assessment/prompts.py": "766cee4f6ee05ed0f034d554763e044e55de8d248616e10a32b85cb8bad627af",
+    "assessment/providers.py": "16aa8f571c4065e530a3731d50b51603760bed5f915c6aeac2f7d29c8030b277",
+    "assessment/reasoning_claims.py": "3b355ee0e2ee80e9b1ddfa19c76aed571135b23d2d3ac635f3c87266c05e3544",
+    "assessment/reasoning_diagnostics.py": "7a70b5eed79af891b024ce8dd86ccae52e9a4b252ecd74de76a659c4d14e8296",
+    "assessment/run.py": "66f5eda3ae5effa09e60b7bdc2070acc6421893502f99cf1596a697d4f35e14f",
+    "assessment/run_readiness.py": "09e4eae8f3a50ec078f97a6133c0c7da53c4b4fd5812e8ec1f82d666daceffe9",
+    "assessment/single_llm.py": "045084d31ba0979d91daf400e193667d99e6d8e4bd71d282665e4fb674fbc8a8",
+    "diagnostics/__init__.py": "2121ed642c6748a95d2cb3a0c1ecc630b4a257422a584071c6f5f6c31f1c4612",
+    "diagnostics/basis_refit.py": "bfc5d605266edc401ee50fe7d506deeed6e175e9681ef4d3ba6dcc03f2e9d548",
+    "diagnostics/boundary_status.py": "0ab1240636cc76569505b3a1acd0dbd0fc46d22ecfbf95e2cf4d311ae08c675c",
+    "diagnostics/calendar_features.py": "84585e9f1d52142a2fcdf4f77fde4883a72adb4e43053b620f39409e72ed2274",
+    "diagnostics/catalogue_runner.py": "ad7bba4390ce40a88f2c3290f1096f01c4ab634025896d126ebd849d2b8e252a",
+    "diagnostics/conditional_intervention.py": "73a5b897a2acd67b6a2013c0e7f965ec348ee8b32d07558cc4796ba60f314775",
+    "diagnostics/decision_tracer.py": "dc6ea6198f131be9c2588f155f0acb276aed9bed9d9181b595882c0227cd4d4a",
+    "diagnostics/economic_fragility.py": "4c8b8ddd86ca6340c95cb9032330a173bc80b5be40809af8064c06932f7230ad",
+    "diagnostics/entry_boundary_economics.py": "39b52a9654ce3338efe9662367a43e0f2238d2e0a8a2ccf25f1b3cf53f22674a",
+    "diagnostics/entry_boundary_stability.py": "3b474fe5aa6b890522746c9080ceddc82ffe5861650b2c69f4e685ad74007838",
+    "diagnostics/fire_temporal.py": "b2f5f5f739f9b5ff8f52da7ad88454fbe678fe20f3d94731d6b4c32149fcdd8e",
+    "diagnostics/fomc_dates.csv": "b2550ec62378f56c84487a3f543e9a8b06389da2e0674c9cc130badaceca1351",
+    "diagnostics/intraday_stability.py": "77e5ef44759d005b7a66aa13bdba5de52ae2bd0dbd1bb3a2acefd9edb056049d",
+    "diagnostics/matched_controls.py": "7a9af0e4bc451dfd8b3aa577e8afe1b6759b87a1e503bf7e845744465dd3dcfb",
+    "diagnostics/perturbation_prober.py": "05c0fbaed24a0d0bfc2f118768a019d6300904fb21c6554016a4e84c6bfad480",
+    "diagnostics/regime_features.py": "a5964a603f803cebf4918bdf9754bdabbf92f5db28ff2f3e158cfb20dc8e72ef",
+    "diagnostics/training_recurrence.py": "db79818b6a1632c128da692edec0893cf06375fa84ee3c8af2d2d4909c68038f",
+    "diagnostics/transaction_cost_stress.py": "2119ac35360931ef62909fc0f50387daa4d521bd87c58594305d103dce4c0c08",
+    "diagnostics/vulnerability_catalogue.py": "939ad4ad6092e50c208f19815d5c2753073f9457f0a702eee9f259c52fa395d5",
+    "input_tools/__init__.py": "d2cb08c7f2fe797fad7c1caab971415cbeb55bf95359a3900d62a9717e78e769",
+    "input_tools/embedding_data.py": "d6c5f88241e95a75a728af4875ca9b8101c189a6c9fdef729a4f6b671fa9de4b",
+    "input_tools/prepare.py": "414ae167c2e7c8faf43f348eedcc85ca95b15f595b740a851b6310515da23136",
+    "input_tools/scalar_data.py": "74b46f2e81a2f16192081bec9082cf56cb96bc91b99b78542d5d9f6ec205ad4c",
+    "input_tools/seed_firewall.py": "745014ab70e760ef44802efe961db576e9aff6ecd35ca86462ad0ec96be12f70",
+    "reference/__init__.py": "2466436e0d715692e8a17ef107b51669029e011672f47f0dc268ecc8be080e04",
+    "reference/canonical_membership.json": "094d1daf2a449e85f719fd4555725a4ffb48050faee59916dfae1575276e798c",
+    "reference/seed_firewall.json": "41403246ae42ec38989966f6d0fe3da3e568d1c85ced46b9af3be7c02f1e4f10",
+    "strategy_profiles/__init__.py": "ae003f75bd78f863bb61de1d05de149285c4df3d7ae4efb659b651d32e61afed",
+    "strategy_profiles/diagnostic_evidence.py": "0ed12379e890bcbd9acd7a5c4abc2c0f7a8377e0b5c1376e9e5f7e4c312ef43f",
+    "strategy_profiles/economic_comparisons.py": "3efb03d92a2f5f1a2dc77f3f332f41e32f88affea74d410661e3c9762aca054e",
+    "strategy_profiles/economic_predictors.py": "fa2e6b2444bc67d8bd97a4e1edfe697a53bd9946cf0e223773658e6bc64e3ece",
+    "strategy_profiles/evidence_cards.py": "81cc8222b79b5332ea93b247e83f08a281796b11c8ee034daa74d85131f8df73",
+    "strategy_profiles/evidence_summaries.py": "16414a67c6b1dc9fef863fa8e6a3b565a15ea9a3ad01f66a864bf542edccb86c",
+    "strategy_profiles/generalization_case_file.py": "ae2dffd35ab2fba7137918251356cc5e32a2cb1fbf356aa4adead30016e1d892",
+    "strategy_profiles/peer_reference.py": "d448c420c57f56c72857a2a275875fc1c46bfaf8a3eadbd21db9d28c64e27cfe",
+    "strategy_profiles/terminal_meanings.py": "a00c906e2663a57dea2e75cfec5376d39c673f70a9559354b59204fafdab7a73",
+    "strategy_profiles/terminal_registry.py": "ef72a0defecb0025dedd13d9e8775c76cfd6146248ec1d92188bbf9035e37bec",
+    "strategy_profiles/tool_evidence.py": "b4bb6dd55c822334fabd5a27a1d68a4ffc98ed5fdf1eac0dc8fc23a8a7b66296",
+    "strategy_profiles/training_case_exhibits.py": "03e7bdc71db243a71ccaa9c6ac6072eaaac43599c9182baba2f71136d6859f00",
+    "strategy_profiles/training_economics.py": "368604a60ef76f47279f2c493e033ce82e1e1c71dbbdb3003cca99578a6fb48f"
+  },
+  "schema_version": 1,
+  "shared_runtime_sha256": {
+    "search/__init__.py": "fcd2144e5e74283087936bc8c3c1d028c4c626faa110ef72d29a2a4baf703823",
+    "search/config.py": "e9c49c197a5ca6356142b42dd7469114267e2734911ff5fa58c6af2255b4b09c",
+    "search/data.py": "c2915cca9edfcbc1ec60370d7afdfdfab563c3a904e833a0a9161fe638a2e254",
+    "search/evolution.py": "f1ee3f313eb1d5eecc0fda6bb90ebd8fbbe70dfcfffbc9a1fc8c33f5c66e69b8",
+    "search/fitness.py": "fc016e035adcf3d32f001a56c4e79e94223ff44512b15c6a031765ce5e0024d2",
+    "search/genetics.py": "7e8918ffeea8e7cab63fe46e2a898dd4da629825992d1d65ecde1795115c62bf",
+    "search/grammar.py": "fd64e854546172f15f7313fb1993ee09cfa6db40d5a32e697269c30afb76c824",
+    "search/normalization.py": "7f8c17709692fb31d23267c809b65b8bca608463ee25d5d4ed31e3b67a087f87",
+    "search/pipeline.py": "946401223f071aa4453c5606948d77ce68e792f4ef185b9db62b48ec2b4c8c62",
+    "search/readouts.py": "6f5279604a052c6879191679939cf2200b8700a024f749991bb1a34defca0e3a",
+    "search/records.py": "c3e5c38bf30f6c062c040a6aac9e96e3d2ec32c0afc5bbf236fc621e518199e2",
+    "search/replay.py": "6b4614bcdd2bb427ef4c993a16e357222ef7fa047631b0c399612ff84ed8e50f",
+    "search/run.py": "7451a250c94761b9f63a42024594d18ab6ceb6eb23a35595aa19390eab7886d4",
+    "search/simulator.py": "da16baca1f77d6063d916004ad39d9f129f39d35dafb615e61223723249bf1d8",
+    "search/structure.py": "6a13af605d865e7e26fc85063b18530e4e2ef3e76810c3d36dad022c8e3ea696",
+    "search/templates.py": "7ef0cfd97501d2c2cae01945b730cc83dcfffd6824f7ecf2b4c91b509c98b2f3",
+    "search/thresholds.py": "f513072a4b86984b2617903ec3c4e061d5042a5438f7a6e0c1da01d1100e2c10",
+    "search/validation.py": "957171f4d5afdee2d5e9db9d04581c735f504576fa2d5c7a5ff1a4c88924aac4",
+    "search/wing_iv.py": "a332718ff08149589db1daa611f74ae4576ea31169eadcc60692479a12c08d5f"
+  },
+  "single_llm_prompt_sha256": {
+    "percentage_v1:peers=False": "6278431d105c8faa414fc4f6be6b36f45cf789f9cede5b422fd4665970c47ebb",
+    "percentage_v1:peers=True": "f6b3c675269c0475377915805720d910337b38ef3d2b58149d563840fd1322c5"
+  }
+}

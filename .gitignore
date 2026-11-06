@@ -54,6 +54,13 @@ runs/
 /evolutionary_search/results/*
 !/evolutionary_search/results/outcomes.npz
 !/evolutionary_search/results/report.html
+/multi-agent/results/*
+!/multi-agent/results/court.json
+!/multi-agent/results/single_llm.json
+!/multi-agent/results/transcripts.json.gz
+!/multi-agent/results/outcomes.npz
+!/multi-agent/results/report.html
+!/multi-agent/src/potofgold/multi_agent/diagnostics/fomc_dates.csv
 *.log
 
 # Local verification tests are not part of the published repository.

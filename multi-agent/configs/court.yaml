@@ -1,0 +1,17 @@
+# Models and assessment settings for new court and single-LLM runs.
+# Supply strategy and market-input paths on the command line.
+protocol: training-informed-research-v12-no-analyst
+arguments:
+  pros-model: gpt-6-astra
+  def-model: claude-opus-4-8
+  judge-models: [claude-opus-4-8, gpt-5.6-terra, gpt-6-astra]
+  one-llm-model: gpt-6-astra
+  n-judges: 3
+  rounds: 1
+  allocation-policy: percentage_v1
+  decision-policy: research_prediction
+  evidence-mode: training_economics
+  evidence-version: court-v2-boundary-5diag
+  evidence-scope: all
+  exploratory-ranking: true
+  single-llm-baseline: true

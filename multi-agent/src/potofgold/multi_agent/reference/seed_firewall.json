@@ -1,0 +1,52 @@
+{
+  "version": "2026-09-16",
+  "purpose": "H3 seed firewall \u2014 the single authority on DEV vs scored-TEST champions (task #58).",
+  "engine_sha": "b304782",
+  "cohort_seed": "2",
+  "cohort_source": "results/sealed_b304782/",
+  "data": "l1_minute_enriched_v2_stride1_decorjepa_ivclean_recon.parquet",
+  "split_unit": "champion_id_hash_within_seed2",
+  "hash_salt": "h3_firewall_v1",
+  "dev_pct": 30,
+  "forced_dev_ids": [
+    "seed2_sealed_C_s2_f0_02b694d7de6bb0b1",
+    "seed2_sealed_C_s2_f0_073ae8c4e16478e2",
+    "seed2_sealed_C_s2_f0_8b9e28622d46e3f1",
+    "seed2_sealed_C_s2_f0_b294e01f94086097",
+    "seed2_sealed_C_s2_f0_ebf49e1a6c3e4bdd",
+    "seed2_sealed_C_s2_f1_e13cae77e6f7ed7a",
+    "seed2_sealed_C_s2_f1_e791bf2f6618f9b9",
+    "seed2_sealed_C_s2_f2_974dc3d8dba6f8c6",
+    "seed2_sealed_C_s2_f3_102eea5b318f2d83",
+    "seed2_sealed_C_s2_f3_20a2ac211d93910c",
+    "seed2_sealed_C_s2_f3_50b645eda2045305",
+    "seed2_sealed_C_s2_f3_531a517c6a55c5ad",
+    "seed2_sealed_C_s2_f3_62f966592be88d22",
+    "seed2_sealed_C_s2_f3_68ca260c6b028045",
+    "seed2_sealed_C_s2_f3_6f8f62dec0046e1c",
+    "seed2_sealed_C_s2_f3_770d8dc8d480a65b",
+    "seed2_sealed_C_s2_f3_a420187b3b8e01b0",
+    "seed2_sealed_C_s2_f3_a67543a44b125d16",
+    "seed2_sealed_C_s2_f3_b2f6f469b7c2101d",
+    "seed2_sealed_C_s2_f3_efbd6b1e3b4a11d0"
+  ],
+  "exploratory_extra_test_seeds": [
+    "0",
+    "1",
+    "3",
+    "4"
+  ],
+  "reconciliation": "Supersedes the contradiction: generalization_cohort.py comment (seed-2=learning) and extract_dev_calibration_crop.py (seed-2 eval-excluded, dev built from {0,1,3,4} = the seed-2 cohort's TEST seeds = leak). Seed-2 is now the whole cohort, split within by champion-id hash.",
+  "claim_scope": "Transfer to UNSEEN champions from the SAME search/dates. NOT future markets; NOT cross-seed in this split.",
+  "exposure_ledger": {
+    "seed2": "court pilot (C20, forced-dev), labels, g5 trace \u2014 DEV",
+    "seeds_0_1_3_4": "abandoned calibration read their OOS (CVaR objective) \u2014 exploratory-extra test only, never the clean scored test"
+  },
+  "notes": "Develop tools/analyst LABEL-FREE on dev; score the court on test. assert_dev_test_disjoint MUST pass before any dev+test pair is used.",
+  "canonical_cohort_files": [
+    "generated_qc/g5_A_champions_trainonly.json",
+    "generated_qc/g5_C_champions_trainonly.json",
+    "generated_qc/g5_AUC_champions_trainonly.json"
+  ],
+  "canonical_note": "The scored cohort = the UNION of champion_ids in these g5 canonical extracts (464). build_firewall_cohort restricts the sealed-set walk to these ids so the split is over EXACTLY the court's cohort, excluding variant-config b304782 seed-2 runs (mseed2/cs2_pull) that remain in results/sealed_b304782/."
+}
